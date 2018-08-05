@@ -8,7 +8,7 @@
           <ul>
             <li>
               <span>1. 20171223徐晨阳第一次作业.doc</span>
-              <a class="del-btn">删除</a>
+              <a class="del-btn" @click="delHomework">删除</a>
             </li>
             <li>
               <span>1. 20171223徐晨阳社会调研报告.doc</span>
@@ -43,6 +43,15 @@ export default {
   methods: {
     submit(e) {
       e.preventDefault()
+    },
+    delHomework() {
+      const res = confirm('确定删除作业吗？')
+
+      if (res) {
+        console.log('确定删除')
+      } else {
+        console.log('取消')
+      }
     }
   }
 }
