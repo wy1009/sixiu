@@ -1,0 +1,108 @@
+<template>
+  <div class="page-login">
+    <article class="login-container">
+      <a class="close"></a>
+      <section class="logo"><img src="../assets/images/logo.png" alt="北邮马院"></section>
+      <form action="">
+        <div class="form-item">
+          <label>
+            <img src="../assets/images/icon-username.png" alt="账号">
+          </label>
+          <input type="text">
+        </div>
+        <div class="form-item">
+          <label><img src="../assets/images/icon-password.png" alt="密码"></label>
+          <input type="text">
+        </div>
+        <button class="submit">登 录</button>
+        <a href="#" class="forget-password">忘记密码？</a>
+      </form>
+    </article>
+  </div>
+</template>
+
+<style lang="postcss" scoped>
+@import "../assets/css/section.css";
+
+.page-login {
+  background-image: url(../assets/images/bg-login.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 100%;
+  position: relative;
+  min-width: 1366px;
+
+  & .login-container {
+    width: 700px;
+    height: 550px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, .6);
+    border-radius: 8px;
+
+    & .logo {
+      width: 120px;
+      margin: 37px auto 0;
+
+      & img {
+        width: 100%;
+      }
+    }
+
+    & form {
+      width: 350px;
+      margin: 50px auto 0;
+
+      & .form-item {
+        height: 55px;
+        background: #fff;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+
+        & label {
+          flex-basis: 50px;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          & img {
+            display: block;
+            height: 21px;
+          }
+        }
+
+        & input {
+          display: block;
+          flex: auto;
+          height: 32px;
+          border-left: 2px solid #ccc;
+          padding-left: 6px;
+          font-size: inherit;
+        }
+      }
+
+      & .submit {
+        background-color: var(--red);
+        color: #fff;
+        text-align: center;
+        line-height: 45px;
+        width: 100%;
+        border: none;
+        font-size: inherit;
+        border-radius: 4px;
+      }
+
+      & .forget-password {
+        font-size: 14px;
+        color: #3a3a3a;
+        float: right;
+        margin-top: 25px;
+      }
+    }
+  }
+}
+</style>
