@@ -5,8 +5,8 @@
         <img src="../assets/images/logo.png" alt="北邮马院">
       </h1>
       <ul class="nav">
-        <li class="nav-item" :class="$route.name === 'data' ? 'active' : ''">
-          <router-link class="nav-link" :to="{ name: 'data' }">课程资料</router-link>
+        <li class="nav-item" :class="$route.name === 'lesson' ? 'active' : ''">
+          <router-link class="nav-link" :to="{ name: 'lesson' }">课程资料</router-link>
         </li>
         <li class="nav-item" :class="$route.name === 'homework' ? 'active' : ''">
           <router-link class="nav-link" :to="{ name: 'homework' }">作业上传</router-link>
@@ -25,7 +25,7 @@
           <router-link class="nav-link" :to="{ name: 'test' }">问卷小测</router-link>
         </li>
         <li class="nav-item" :class="$route.name === 'opinion' || $route.name === 'suggestion' ? 'active' : ''">
-          <router-link class="nav-link" :to="{ name: 'news' }">课间消息</router-link>
+          <router-link class="nav-link" :to="{ name: 'opinion' }">课间消息</router-link>
           <ul class="second-nav">
             <li class="second-nav-item" :class="$route.name === 'opinion' ? 'active' : ''">
               <router-link :to="{ name: 'opinion' }">微观点</router-link>
@@ -145,4 +145,3 @@ export default {
   }
 }
 </style>
-

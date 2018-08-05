@@ -8,16 +8,16 @@
           <ul>
             <li>
               <span>1. 20171223徐晨阳第一次作业.doc</span>
-              <a>删除</a>
+              <a class="del-btn">删除</a>
             </li>
             <li>
               <span>1. 20171223徐晨阳社会调研报告.doc</span>
-              <a>删除</a>
+              <a class="del-btn">删除</a>
             </li>
           </ul>
         </section>
         <section class="upload">
-          <form>
+          <form @submit="submit($event)">
             <div class="form-item">
               <input type="file">
             </div>
@@ -25,9 +25,9 @@
             <div class="form-item">
               <label>选择课程</label>
               <br>
-              <input type="radio">思修
+              <input type="radio" name="type">思修
               <br>
-              <input type="radio">马原
+              <input type="radio" name="type">马原
             </div>
 
             <button class="form-submit">上传文件</button>
@@ -37,6 +37,17 @@
     </section>
   </article>
 </template>
+
+<script>
+export default {
+  methods: {
+    submit(e) {
+      e.preventDefault()
+    }
+  }
+}
+</script>
+
 
 <style lang="postcss" scoped>
 @import "../assets/css/section.css";
@@ -54,7 +65,14 @@
   & ul {
     margin-left: 70px;
     & li {
-      margin-top: 20px;
+      margin-top: 16px;
+      font-size: 14px;
+
+      & .del-btn {
+        font-size: 14px;
+        color: var(--red);
+        margin-left: 20px;
+      }
     }
   }
 }

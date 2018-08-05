@@ -3,23 +3,46 @@
     <article class="login-container">
       <a class="close"></a>
       <section class="logo"><img src="../assets/images/logo.png" alt="北邮马院"></section>
-      <form action="">
+      <form @submit="submit($event)">
         <div class="form-item">
           <label>
             <img src="../assets/images/icon-username.png" alt="账号">
           </label>
-          <input type="text">
+          <input type="text" v-model="userId">
         </div>
         <div class="form-item">
           <label><img src="../assets/images/icon-password.png" alt="密码"></label>
-          <input type="text">
+          <input type="password" v-model="userPwd">
         </div>
-        <button class="submit">登 录</button>
+        <button class="submit" type="submit">登 录</button>
         <a href="#" class="forget-password">忘记密码？</a>
       </form>
     </article>
   </div>
 </template>
+
+<script>
+import ds from '../assets/js/server'
+
+export default {
+  data() {
+    return {
+      userId: '',
+      userPwd: '',
+    }
+  },
+  methods: {
+    submit(e) {
+      e.preventDefault()
+      ds.login({
+        userId: this.userId,
+        userPwd: this.userPwd,
+      })
+    }
+  }
+}
+</script>
+
 
 <style lang="postcss" scoped>
 @import "../assets/css/section.css";
