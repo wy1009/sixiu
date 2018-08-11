@@ -6,13 +6,9 @@
         <section class="uploaded">
           <header>已上传</header>
           <ul>
-            <li>
-              <span>1. 20171223徐晨阳第一次作业.doc</span>
+            <li v-for="(item, index) in homeworkList" :key="item.id">
+              <a :href="item.downloadurl"><span>{{ index + 1 }}. {{ item.name }}</span></a>
               <a class="del-btn" @click="delHomework">删除</a>
-            </li>
-            <li>
-              <span>1. 20171223徐晨阳社会调研报告.doc</span>
-              <a class="del-btn">删除</a>
             </li>
           </ul>
         </section>
@@ -21,7 +17,7 @@
             <div class="form-item">
               <input type="file">
             </div>
-            
+
             <div class="form-item">
               <label>选择课程</label>
               <br>
@@ -39,7 +35,25 @@
 </template>
 
 <script>
+import ds from '../assets/js/server'
+
 export default {
+  data() {
+    return {
+      homeworkList: [],
+    }
+  },
+  mounted() {
+    ds.getHomeworkList().then(({ data }) => {
+      if (data.success) {
+        let homeworkList = []
+        data.data.classdetail.forEach((course) => {
+          homeworkList = homeworkList.concat(course.uploadlist)
+        })
+        this.homeworkList = homeworkList
+      }
+    })
+  },
   methods: {
     submit(e) {
       e.preventDefault()
@@ -56,7 +70,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="postcss" scoped>
 @import "../assets/css/section.css";

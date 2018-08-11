@@ -36,6 +36,15 @@ const ds = {
         userToken,
       },
     })
+  },
+  getHomeworkList() {
+    return axios({
+      method: 'post',
+      url: 'app/class',
+      data: {
+        userToken,
+      },
+    })
   }
 }
 

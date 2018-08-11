@@ -4,7 +4,7 @@
       <header class="section-header">{{ section.title }}</header>
       <ul class="lesson-list">
         <template v-if="section.list.length">
-          <li v-for="item in section.list" :key="item.id">{{ item.name }}</li>
+          <li v-for="item in section.list" :key="item.id"><a :href="item.downloadurl">{{ item.name }}</a></li>
         </template>
         <li v-else>暂无</li>
       </ul>
@@ -27,7 +27,7 @@ export default {
         this.homeList = data.data.homelist
       }
     })
-  }
+  },
 }
 </script>
 
