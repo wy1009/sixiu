@@ -10,7 +10,7 @@
       <div class="part-display" v-if="status === 'display'">
         <ul>
           <li class="news">
-            <a class="del">-</a>
+            <a class="del" @click="del">-</a>
             <div class="time">
               <span class="month">6月</span>
               <span class="date">24</span>
@@ -84,6 +84,12 @@ export default {
   methods: {
     toggleStatus(status) {
       this.status = status
+    },
+    del() {
+      const res = confirm('确定删除吗？')
+      if (res) {
+        // 删除微观点/微吐槽
+      }
     }
   }
 }

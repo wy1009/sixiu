@@ -1,40 +1,36 @@
 <template>
   <article class="page-lesson">
-    <section class="section ppt">
-      <header class="section-header">课程PPT</header>
+    <section class="section ppt" v-for="section in homeList" :key="section.title">
+      <header class="section-header">{{ section.title }}</header>
       <ul class="lesson-list">
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-      </ul>
-    </section>
-    <section class="section audio">
-      <header class="section-header">课程音频</header>
-      <ul class="lesson-list">
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-      </ul>
-    </section>
-    <section class="section video">
-      <header class="section-header">课程视频</header>
-      <ul class="lesson-list">
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
-        <li>第一章 追求伟大理想 坚定崇高信念</li>
+        <template v-if="section.list.length">
+          <li v-for="item in section.list" :key="item.id">{{ item.name }}</li>
+        </template>
+        <li v-else>暂无</li>
       </ul>
     </section>
   </article>
 </template>
+
+<script>
+import ds from '../assets/js/server'
+
+export default {
+  data() {
+    return {
+      homeList: [],
+    }
+  },
+  mounted() {
+    ds.getHomeList().then(({ data }) => {
+      if (data.success) {
+        this.homeList = data.data.homelist
+      }
+    })
+  }
+}
+</script>
+
 
 <style lang="postcss" scoped>
 @import "../assets/css/section.css";
