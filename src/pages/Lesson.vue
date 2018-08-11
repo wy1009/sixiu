@@ -4,7 +4,10 @@
       <header class="section-header">{{ section.title }}</header>
       <ul class="lesson-list">
         <template v-if="section.list.length">
-          <li v-for="item in section.list" :key="item.id"><a :href="item.downloadurl">{{ item.name }}</a></li>
+          <li v-for="item in section.list" :key="item.id">
+            <a :href="item.downloadurl">{{ item.name }}</a>
+            <a class="del-btn" @click="del">删除</a>
+          </li>
         </template>
         <li v-else>暂无</li>
       </ul>
@@ -27,6 +30,14 @@ export default {
         this.homeList = data.data.homelist
       }
     })
+  },
+  methods: {
+    del() {
+      const res = confirm('确定删除吗？')
+      if (res) {
+        // 删除项目
+      }
+    }
   },
 }
 </script>
@@ -62,6 +73,12 @@ export default {
 
       &:first-child {
         margin-top: 0;
+      }
+
+      & .del-btn {
+        font-size: 14px;
+        color: var(--red);
+        margin-left: 20px;
       }
     }
   }

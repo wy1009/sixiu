@@ -15,15 +15,16 @@
         <section class="upload">
           <form @submit="submit($event)">
             <div class="form-item">
-              <input type="file">
+              <input type="file" name="file">
             </div>
 
             <div class="form-item">
               <label>选择课程</label>
-              <br>
-              <input type="radio" name="type">思修
-              <br>
-              <input type="radio" name="type">马原
+              <ul>
+                <li v-for="item in classList" :key="item.courseid">
+                  <input type="radio" name="courseId" :value="item.courseid">{{ item.courseclassname }}
+                </li>
+              </ul>
             </div>
 
             <button class="form-submit">上传文件</button>
@@ -41,22 +42,34 @@ export default {
   data() {
     return {
       homeworkList: [],
+      classList: [],
     }
   },
   mounted() {
-    ds.getHomeworkList().then(({ data }) => {
+    ds.getClassList().then(({ data }) => {
       if (data.success) {
         let homeworkList = []
         data.data.classdetail.forEach((course) => {
           homeworkList = homeworkList.concat(course.uploadlist)
         })
         this.homeworkList = homeworkList
+        this.classList = data.data.courseClasses
       }
     })
   },
   methods: {
     submit(e) {
       e.preventDefault()
+
+      const form = e.currentTarget
+
+      let formData = new FormData()
+
+      formData.append('courseId', form.courseId.value)
+      formData.append('file', form.file.files[0])
+      formData.append('userToken', localStorage['sixiuUserToken'])
+
+      ds.submitHomework(formData)
     },
     delHomework() {
       const res = confirm('确定删除作业吗？')

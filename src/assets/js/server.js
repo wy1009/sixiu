@@ -37,7 +37,7 @@ const ds = {
       },
     })
   },
-  getHomeworkList() {
+  getClassList() {
     return axios({
       method: 'post',
       url: 'app/class',
@@ -45,7 +45,17 @@ const ds = {
         userToken,
       },
     })
-  }
+  },
+  submitHomework(params) {
+    return axios({
+      method: 'post',
+      url: 'file/upload/student',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      data: params,
+    })
+  },
 }
 
 export default ds
