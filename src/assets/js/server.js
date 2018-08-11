@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://192.168.1.103:9000/App/'
+axios.defaults.baseURL = 'http://192.168.43.187:9000/App/'
 
 let userToken = localStorage['sixiuUserToken']
 let userAuth = localStorage['sixiuUserAuth']
@@ -56,6 +56,22 @@ const ds = {
       data: params,
     })
   },
+  getNewsList(type) {
+    return axios({
+      method: 'post',
+      url: `app/${type}/all`,
+      data: {
+        userToken,
+      },
+    })
+  },
+  getOpinionDetail(params) {
+    return axios({
+      method: 'post',
+      url: 'app/opinion/one',
+      data: Object.assign({ userToken }, params),
+    })
+  }
 }
 
 export default ds

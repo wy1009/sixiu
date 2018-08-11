@@ -34,8 +34,8 @@ const routes = [{
     component: News,
   }, {
     // 微吐槽
-    name: 'suggestion',
-    path: 'news/suggestion',
+    name: 'roast',
+    path: 'news/roast',
     component: News,
   }, {
     // 作业上传

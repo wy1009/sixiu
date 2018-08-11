@@ -24,14 +24,14 @@
         <li class="nav-item" :class="$route.name === 'test' ? 'active' : ''">
           <router-link class="nav-link" :to="{ name: 'test' }">问卷小测</router-link>
         </li>
-        <li class="nav-item" :class="$route.name === 'opinion' || $route.name === 'suggestion' ? 'active' : ''">
+        <li class="nav-item" :class="$route.name === 'opinion' || $route.name === 'roast' ? 'active' : ''">
           <router-link class="nav-link" :to="{ name: 'opinion' }">课间消息</router-link>
           <ul class="second-nav">
             <li class="second-nav-item" :class="$route.name === 'opinion' ? 'active' : ''">
               <router-link :to="{ name: 'opinion' }">微观点</router-link>
             </li>
-            <li class="second-nav-item" :class="$route.name === 'suggestion' ? 'active' : ''">
-              <router-link :to="{ name: 'suggestion' }">微吐槽</router-link>
+            <li class="second-nav-item" :class="$route.name === 'roast' ? 'active' : ''">
+              <router-link :to="{ name: 'roast' }">微吐槽</router-link>
             </li>
           </ul>
         </li>

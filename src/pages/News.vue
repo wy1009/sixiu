@@ -2,50 +2,43 @@
   <article class="page-news">
     <section class="section">
       <header class="section-header">
-        微观点
-        <a class="border-btn" v-if="status === 'display'" @click="toggleStatus('add')">添加</a>
-        <a class="border-btn" v-else @click="toggleStatus('display')">取消</a>
+        微{{ $route.name === 'opinion' ? '观点' : '吐槽' }}
+        <a class="border-btn" v-if="status === 'list'" @click="toggleStatus('add')">添加</a>
+        <a class="border-btn" v-if="status === 'add'" @click="toggleStatus('list')">取消</a>
+        <a class="border-btn" v-if="status === 'detail'" @click="toggleStatus('list')">返回</a>
       </header>
       <!-- 展示消息部分 -->
-      <div class="part-display" v-if="status === 'display'">
+      <article class="part-display" v-if="status === 'list'">
         <ul>
-          <li class="news">
+          <li class="news" v-for="item in list" :key="item[`${$route.name}Id`]">
             <a class="del" @click="del">-</a>
             <div class="time">
-              <span class="month">6月</span>
-              <span class="date">24</span>
+              <span class="month">{{ new Date(parseInt(item.uploadDate, 10)).getMonth() + 1 }}月</span>
+              <span class="date">{{ new Date(parseInt(item.uploadDate, 10)).getDate() }}</span>
             </div>
-            <div class="title">
-              <div class="name">中国共产党北京邮电大学马克思主义学院党员大会顺利召开</div>
-              <div class="publisher">发布者：徐晨阳</div>
-            </div>
-          </li>
-          <li class="news">
-            <a class="del">-</a>
-            <div class="time">
-              <span class="month">6月</span>
-              <span class="date">24</span>
-            </div>
-            <div class="title">
-              <div class="name">中国共产党北京邮电大学马克思主义学院党员大会顺利召开</div>
-              <div class="publisher">发布者：徐晨阳</div>
-            </div>
-          </li>
-          <li class="news">
-            <a class="del">-</a>
-            <div class="time">
-              <span class="month">6月</span>
-              <span class="date">24</span>
-            </div>
-            <div class="title">
-              <div class="name">中国共产党北京邮电大学马克思主义学院党员大会顺利召开</div>
-              <div class="publisher">发布者：徐晨阳</div>
-            </div>
+            <a class="title" @click="showDetail(item.opinionId)">
+              <div class="name">{{ item.title }}</div>
+              <div class="publisher">发布者：{{ item.userName }}</div>
+            </a>
           </li>
         </ul>
-      </div>
+      </article>
+      <!-- 展示详情部分 -->
+      <article class="part-detail" v-if="status === 'detail'">
+        <header>
+          走进伟人马克思，奏响论文三部曲——马克思主义学院成功举办“青马油新”学术讲座
+        </header>
+        <div class="author">
+          <div class="avator"></div>
+          <div class="name">麻阳</div>
+          <div class="time">发布时间 2018 年 06 月 07 日 12:00</div>
+        </div>
+        <p class="content">
+          {{ detail.content }}
+        </p>
+      </article>
       <!-- 添加消息部分 -->
-      <div class="part-add" v-if="status === 'add'">
+      <article class="part-add" v-if="status === 'add'">
         <form>
           <div class="form-item title">
             <label>添加标题</label>
@@ -66,20 +59,28 @@
             <textarea></textarea>
           </div>
         </form>
-      </div>
+      </article>
     </section>
   </article>
 </template>
 
 <script>
+import ds from '../assets/js/server'
+
 export default {
   data() {
     return {
-      status: 'display',
+      status: 'list', // list - 列表，detail - 详情，add - 添加
+      list: [],
+      detail: '', // 目前需展示的detail的内容
     }
   },
   mounted() {
-    console.log(this.$route)
+    ds.getNewsList(this.$route.name).then(({ data }) => {
+      if (data.success) {
+        this.list = data.data[`${this.$route.name}List`]
+      }
+    })
   },
   methods: {
     toggleStatus(status) {
@@ -90,6 +91,14 @@ export default {
       if (res) {
         // 删除微观点/微吐槽
       }
+    },
+    showDetail(opinionId) {
+      ds.getOpinionDetail({ opinionId }).then(({ data }) => {
+        if (data.success) {
+          this.detail = data.data
+          this.toggleStatus('detail')
+        }
+      })
     }
   }
 }
@@ -159,6 +168,7 @@ export default {
     }
 
     & .title {
+      display: block;
       padding: 15px 0;
       border-bottom: 1px solid #ededed;
 
