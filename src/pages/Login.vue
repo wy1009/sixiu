@@ -37,6 +37,10 @@ export default {
       ds.login({
         userId: this.userId,
         userPwd: this.userPwd,
+      }).then((res) => {
+        if (res.success && res.data.userToken) {
+          this.$router.replace({ name: 'lesson' })
+        }
       })
     }
   }

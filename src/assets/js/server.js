@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://192.168.43.187:9000/App/'
+axios.defaults.baseURL = 'http://localhost:8080/App/'
 
 let userToken = localStorage['sixiuUserToken']
 let userAuth = localStorage['sixiuUserAuth']
@@ -25,6 +25,7 @@ const ds = {
         userToken = localStorage['sixiuUserToken'] = data.data.userToken
         userAuth = localStorage['sixiuUserAuth'] = data.data.userAuth
       }
+      return data
     })
   },
   // 首页信息

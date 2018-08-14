@@ -12,7 +12,7 @@
 
 .section-header {
   background-image: url(../assets/images/icon-test.png);
-  background-color: var(--mainColor);
+  background-color: var(--red);
 }
 </style>
 

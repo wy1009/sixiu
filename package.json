@@ -39,8 +39,7 @@
     "plugins": {
       "postcss-import": {},
       "postcss-url": {},
-      "postcss-cssnext": {},
-      "autoprefixer": {}
+      "postcss-cssnext": {}
     }
   },
   "browserslist": [
