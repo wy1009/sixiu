@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "errorCode": "",
+  "errorMsg": "",
+  "data": [
+    {
+      "messageid": 1,
+      "courseclassid": "1",
+      "uploadtime": "Aug 1, 2018 1:19:06 PM",
+      "messagecontent": "hello"
+    },
+    {
+      "messageid": 2,
+      "courseclassid": "1",
+      "uploadtime": "Jul 13, 2018 8:00:00 AM",
+      "messagecontent": "message22"
+    }
+  ]
+}

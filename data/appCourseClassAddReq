@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "errorCode": "",
+  "errorMsg": "",
+  "data": {
+    "courses": [
+      {
+        "coursename": "mayuan",
+        "courseid": "111",
+        "teacherid": "2011333000"
+      },
+      {
+        "coursename": "sixiu",
+        "courseid": "112",
+        "teacherid": "2011333000"
+      }
+    ],
+    "classes": [
+      {
+        "classid": "2018110303"
+      },
+      {
+        "classid": "2018110304"
+      }
+    ]
+  }
+}

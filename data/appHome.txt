@@ -1,0 +1,58 @@
+{
+  "success": true,
+  "errorCode": "",
+  "errorMsg": "",
+  "data": {
+    "pptlist": [
+      {
+        "name": "sixiu1",
+        "downloadurl": "http://192.168.31.197www.baidu.com",
+        "imageurl": "http://192.168.31.197/1.jpeg",
+        "classname": "1",
+        "id": "12312312"
+      }
+    ],
+    "homelist": [
+      {
+        "title": "歌曲精选",
+        "list": [
+          {
+            "name": "mayuan_song",
+            "downloadurl": "http://192.168.31.197www.google.com",
+            "imageurl": "http://192.168.31.197/1.jpeg",
+            "classname": "1",
+            "id": "32311132"
+          }
+        ]
+      },
+      {
+        "title": "精选视频",
+        "list": [
+          {
+            "name": "mayuan_video",
+            "downloadurl": "http://192.168.31.197www.google.com",
+            "imageurl": "http://192.168.31.197/1.jpeg",
+            "classname": "1",
+            "id": "23123132"
+          }
+        ]
+      },
+      {
+        "title": "实践视频",
+        "list": [
+          {
+            "name": "mayuan_practice",
+            "downloadurl": "http://192.168.31.197www.google.com",
+            "imageurl": "http://192.168.31.197/1.jpeg",
+            "classname": "1",
+            "id": "321311"
+          }
+        ]
+      },
+      {
+        "title": "优秀作业",
+        "list": []
+      }
+    ]
+  }
+}

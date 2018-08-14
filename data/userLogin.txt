@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "errorCode": "",
+  "errorMsg": "",
+  "data": {
+    "userToken": "6170ce2f-21f3-4b8b-b318-81c5ba3a01a9",
+    "userAuth": "student"
+  }
+}

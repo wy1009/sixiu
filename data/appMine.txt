@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "errorCode": "",
+  "errorMsg": "",
+  "data": {
+    "username": "xuchenyang",
+    "userphotopath": "http://192.168.31.197/1.jpeg",
+    "userclass": "2018110304",
+    "usertype": "student"
+  }
+}

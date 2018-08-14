@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "errorCode": "",
+  "errorMsg": "",
+  "data": {
+    "type": "student",
+    "list": [
+      {
+        "courseid": "111",
+        "coursename": "mayuan",
+        "list": [
+          {
+            "classid": "2018110304",
+            "grades": [
+              {
+                "username": "xuchenyang",
+                "userid": "2018110828",
+                "courseid": "111",
+                "grade": 100
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "courseid": "112",
+        "coursename": "sixiu",
+        "list": [
+          {
+            "classid": "2018110304",
+            "grades": [
+              {
+                "username": "xuchenyang",
+                "userid": "2018110828",
+                "courseid": "112",
+                "grade": 98
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "errorCode": "",
+  "errorMsg": "",
+  "data": {
+    "opinionId": "a29c3d9e-d73d-47cd-adde-dc1dd2003edb",
+    "title": "test_opinion",
+    "uploadDate": "1534024389000",
+    "photoUrl": "http://192.168.31.197/1.jpeg",
+    "userName": "xuchenyang",
+    "content": "everyone is good",
+    "imageUrl": "http://192.168.31.197/OPINION_IMAGE/2018110828/2018_08_04/a29c3d9e-d73d-47cd-adde-dc1dd2003edb/1.jpeg",
+    "isOpinionOwner": true
+  }
+}
