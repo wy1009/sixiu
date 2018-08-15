@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import ds from '../assets/js/server'
+import { mapActions } from 'vuex'
 
 export default {
   data() {
@@ -32,9 +32,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['login']),
     submit(e) {
       e.preventDefault()
-      ds.login({
+      this.login({
         userId: this.userId,
         userPwd: this.userPwd,
       }).then((res) => {

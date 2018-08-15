@@ -53,6 +53,7 @@
 <script>
 export default {
   mounted() {
+    console.log('aaa')
   }
 }
 </script>

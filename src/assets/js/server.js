@@ -1,9 +1,7 @@
 import axios from 'axios'
+import store from '../../store'
 
 axios.defaults.baseURL = 'http://localhost:8080/App/'
-
-let userToken = localStorage['sixiuUserToken']
-let userAuth = localStorage['sixiuUserAuth']
 
 const ds = {
   getUserInfo() {
@@ -11,21 +9,15 @@ const ds = {
       method: 'post',
       url: 'app/mine',
       data: {
-        userToken,
+        userToken: store.state.userToken,
       },
     })
   },
   login(params) {
     return axios({
-      method: 'post',
+      method: 'get',
       url: 'user/login',
       data: params,
-    }).then(({ data }) => {
-      if (data.success) {
-        userToken = localStorage['sixiuUserToken'] = data.data.userToken
-        userAuth = localStorage['sixiuUserAuth'] = data.data.userAuth
-      }
-      return data
     })
   },
   // 首页信息
@@ -34,7 +26,7 @@ const ds = {
       method: 'post',
       url: 'app/home',
       data: {
-        userToken,
+        userToken: store.state.userToken,
       },
     })
   },
@@ -43,7 +35,7 @@ const ds = {
       method: 'post',
       url: 'app/class',
       data: {
-        userToken,
+        userToken: store.state.userToken,
       },
     })
   },
@@ -62,7 +54,7 @@ const ds = {
       method: 'post',
       url: `app/${type}/all`,
       data: {
-        userToken,
+        userToken: store.state.userToken,
       },
     })
   },
@@ -70,7 +62,7 @@ const ds = {
     return axios({
       method: 'post',
       url: 'app/opinion/one',
-      data: Object.assign({ userToken }, params),
+      data: Object.assign({ userToken: store.state.userToken }, params),
     })
   }
 }
