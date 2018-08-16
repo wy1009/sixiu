@@ -1,4 +1,5 @@
 import Router from 'vue-router'
+import store from './store'
 // 公用
 import Login from './pages/Login.vue'
 import Home from './pages/Home.vue'
@@ -66,6 +67,17 @@ const routes = [{
 
 const router = new Router({
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'login') {
+    next()
+  }
+
+  if (!store.state.userInfo.username) {
+    next({ name: 'login' })
+  }
+  next()
 })
 
 export default router

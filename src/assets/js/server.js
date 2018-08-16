@@ -15,7 +15,7 @@ const ds = {
   },
   login(params) {
     return axios({
-      method: 'get',
+      method: 'post',
       url: 'user/login',
       data: params,
     })
