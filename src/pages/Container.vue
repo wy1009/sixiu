@@ -10,7 +10,8 @@
           <ul class="second-nav">
             <li class="second-nav-item"
               v-for="item in courseList"
-              :key="item.courseclassid"
+              :class="$route.params.id === item.courseid ? 'active' : ''"
+              :key="item.courseid"
             >
               <router-link :to="{ name: 'lesson', params: { id: item.courseid } }">{{ item.courseclassname }}</router-link>
             </li>
@@ -26,7 +27,7 @@
           <ul class="second-nav">
             <li class="second-nav-item"
               v-for="item in courseList"
-              :key="item.courseclassid"
+              :key="item.courseid"
             ><a>{{ item.courseclassname }}</a></li>
           </ul>
         </li>

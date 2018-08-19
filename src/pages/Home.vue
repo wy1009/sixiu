@@ -45,43 +45,5 @@ export default {
 
 
 <style lang="postcss" scoped>
-@import "../assets/css/section.css";
-
-.section {
-  &.ppt {
-    & .section-header {
-      background-image: url(../assets/images/icon-ppt.png);
-    }
-  }
-
-  &.audio {
-    & .section-header {
-      background-image: url(../assets/images/icon-audio.png);
-    }
-  }
-
-  &.video {
-    & .section-header {
-      background-image: url(../assets/images/icon-video.png);
-    }
-  }
-
-  & .home-list {
-    margin: 20px 70px;
-
-    & li {
-      margin-top: 18px;
-
-      &:first-child {
-        margin-top: 0;
-      }
-
-      & .del-btn {
-        font-size: 14px;
-        color: var(--red);
-        margin-left: 20px;
-      }
-    }
-  }
-}
+@import '../assets/css/listInSection.css';
 </style>
