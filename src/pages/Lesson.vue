@@ -1,7 +1,7 @@
 <template>
   <article class="page-lesson">
     <section class="section ppt">
-      <header class="section-header">PPT列表</header>
+      <header class="section-header">课程PPT</header>
       <ul class="home-list">
         <template v-if="lessonDetail.ppturllist && lessonDetail.ppturllist.length">
           <li v-for="item in lessonDetail.ppturllist" :key="item.id">
@@ -13,7 +13,7 @@
       </ul>
     </section>
     <section class="section ppt">
-      <header class="section-header">上传列表</header>
+      <header class="section-header">已上传作业</header>
       <ul class="home-list">
         <template v-if="lessonDetail.uploadlist && lessonDetail.uploadlist.length">
           <li v-for="item in lessonDetail.uploadlist" :key="item.id">

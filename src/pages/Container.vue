@@ -31,9 +31,11 @@
             ><a>{{ item.courseclassname }}</a></li>
           </ul>
         </li>
+        <!-- 该版本暂时不做
         <li class="nav-item" :class="$route.name === 'test' ? 'active' : ''">
           <router-link class="nav-link" :to="{ name: 'test' }">问卷小测</router-link>
         </li>
+        -->
         <li class="nav-item" :class="$route.name === 'opinion' || $route.name === 'roast' ? 'active' : ''">
           <router-link class="nav-link" :to="{ name: 'opinion' }">课间消息</router-link>
           <ul class="second-nav">
