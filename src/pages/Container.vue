@@ -4,21 +4,30 @@
       <h1>
         <img src="../assets/images/logo.png" alt="北邮马院">
       </h1>
-      <ul class="nav">
+      <ul class="nav" v-if="$store.state.userInfo.usertype === 'student'">
         <li class="nav-item" :class="$route.name === 'lesson' ? 'active' : ''">
           <router-link class="nav-link" :to="{ name: 'lesson' }">课程资料</router-link>
+          <ul class="second-nav">
+            <li class="second-nav-item"
+              v-for="item in courseList"
+              :key="item.courseclassid"
+            >
+              <router-link :to="{ name: 'lessonDetail', params: { id: item.courseid } }">{{ item.courseclassname }}</router-link>
+            </li>
+          </ul>
         </li>
         <li class="nav-item" :class="$route.name === 'homework' ? 'active' : ''">
           <router-link class="nav-link" :to="{ name: 'homework' }">作业上传</router-link>
         </li>
       </ul>
-      <ul class="nav">
+      <ul class="nav" v-if="$store.state.userInfo.usertype === 'teacher'">
         <li class="nav-item" :class="$route.name === 'lesson' ? 'active' : ''">
           <router-link class="nav-link" :to="{ name: 'lesson' }">课程管理</router-link>
           <ul class="second-nav">
-            <li class="second-nav-item"><a>思修一班</a></li>
-            <li class="second-nav-item"><a>思修二班</a></li>
-            <li class="second-nav-item"><a>添加课程</a></li>
+            <li class="second-nav-item"
+              v-for="item in courseList"
+              :key="item.courseclassid"
+            ><a>{{ item.courseclassname }}</a></li>
           </ul>
         </li>
         <li class="nav-item" :class="$route.name === 'test' ? 'active' : ''">
@@ -51,8 +60,20 @@
 </template>
 
 <script>
+import ds from '../assets/js/server'
+
 export default {
+  data() {
+    return {
+      courseList: []
+    }
+  },
   mounted() {
+    ds.getCourseList().then(({ data }) => {
+      if (data.success) {
+        this.courseList = data.data.courseClasses
+      }
+    })
   }
 }
 </script>

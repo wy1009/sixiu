@@ -2,7 +2,7 @@ import Router from 'vue-router'
 import store from './store'
 // 公用
 import Login from './pages/Login.vue'
-import Home from './pages/Home.vue'
+import Container from './pages/Container.vue'
 import Password from './pages/Password.vue'
 import Lesson from './pages/Lesson.vue'
 // 学生
@@ -18,24 +18,20 @@ const routes = [{
   component: Login,
 }, {
   path: '/',
-  component: Home,
+  component: Container,
   children: [{
     // 重定向到课程资料 / 课程管理
     path: '',
-    redirect: { name: 'lesson' },
-  }, {
-    // 重定向到微观点
-    path: 'news',
-    redirect: { name: 'opinion' },
+    // redirect: { name: 'lesson' },/
   }, {
     // 微观点
     name: 'opinion',
-    path: 'news/opinion',
+    path: 'opinion',
     component: News,
   }, {
     // 微吐槽
     name: 'roast',
-    path: 'news/roast',
+    path: 'roast',
     component: News,
   }, {
     // 作业上传
@@ -57,6 +53,12 @@ const routes = [{
     name: 'lesson',
     path: 'lesson',
     component: Lesson,
+  }, {
+    // 课程资料 / 课程管理
+    name: 'lessonDetail',
+    path: 'lesson/:id',
+    component: Lesson,
+    props: true,
   }, {
     // 添加课程
     name: 'lessonAdd',

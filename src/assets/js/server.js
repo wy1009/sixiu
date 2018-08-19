@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '../../store'
 
-axios.defaults.baseURL = 'http://localhost:8080/App/'
+axios.defaults.baseURL = 'http://10.3.240.18:9000/App/'
 
 const ds = {
   getUserInfo() {
@@ -30,7 +30,7 @@ const ds = {
       },
     })
   },
-  getClassList() {
+  getCourseList() {
     return axios({
       method: 'post',
       url: 'app/class',

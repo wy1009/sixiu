@@ -1,54 +1,74 @@
 {
-  "success": true,
-  "errorCode": "",
-  "errorMsg": "",
-  "data": {
-    "type": "student",
-    "courseClasses": [
-      {
-        "courseclassid": "1",
-        "courseclassname": "computer-1",
-        "courseid": "111",
-        "teacherid": "2011333000"
-      }
-    ],
-    "classdetail": [
-      {
-        "courseid": "111",
-        "coursename": "computer-1",
-        "uploadlist": [
-          {
-            "name": "mayuan_homework",
-            "downloadurl": "http://192.168.31.197www.google.com",
-            "imageurl": "http://192.168.31.197/1.jpeg",
-            "classname": "1",
-            "id": "23123"
-          },
-          {
-            "name": "student",
-            "downloadurl": "http://192.168.31.197/HOMEWORK/2018110828/2018_08_04/61914584-c45b-43ea-9b9b-d1af4d3bef54/student",
-            "imageurl": "http://192.168.31.197/1.jpeg",
-            "classname": "1",
-            "id": "61914584-c45b-43ea-9b9b-d1af4d3bef54"
-          },
-          {
-            "name": "97D123BABF396688F1D7ED9409957EB5.jpg",
-            "downloadurl": "http://192.168.31.197/HOMEWORK/2018110828/2018_08_11/77cc4ae1-9261-4288-aa55-7faa96bbcc72/97D123BABF396688F1D7ED9409957EB5.jpg",
-            "imageurl": "http://192.168.31.197/1.jpeg",
-            "classname": "1",
-            "id": "77cc4ae1-9261-4288-aa55-7faa96bbcc72"
-          }
+    "success": true,
+    "errorCode": "",
+    "errorMsg": "",
+    "data": {
+        "type": "teacher",
+        "courseClasses": [
+            {
+                "courseclassid": "1",
+                "courseclassname": "computer-1",
+                "courseid": "111",
+                "teacherid": "2011333000"
+            },
+            {
+                "courseclassid": "2",
+                "courseclassname": "computer-2",
+                "courseid": "111",
+                "teacherid": "2011333000"
+            }
         ],
-        "ppturllist": [
-          {
-            "name": "sixiu1",
-            "downloadurl": "http://192.168.31.197www.baidu.com",
-            "imageurl": "http://192.168.31.197/1.jpeg",
-            "classname": "1",
-            "id": "12312312"
-          }
+        "classdetail": [
+            {
+                "courseclassid": "1",
+                "courseclassname": "computer-1",
+                "uploadlist": [
+                    {
+                        "name": "mayuan_homework",
+                        "downloadurl": "http://192.168.31.197www.google.com",
+                        "imageurl": "http://192.168.31.197/1.jpeg",
+                        "classname": "mayuan",
+                        "id": "23123"
+                    },
+                    {
+                        "name": "student",
+                        "downloadurl": "http://192.168.31.197/HOMEWORK/2018110828/2018_08_04/61914584-c45b-43ea-9b9b-d1af4d3bef54/student",
+                        "imageurl": "http://192.168.31.197/1.jpeg",
+                        "classname": "mayuan",
+                        "id": "61914584-c45b-43ea-9b9b-d1af4d3bef54"
+                    },
+                    {
+                        "name": "97D123BABF396688F1D7ED9409957EB5.jpg",
+                        "downloadurl": "http://192.168.31.197/HOMEWORK/2018110828/2018_08_11/77cc4ae1-9261-4288-aa55-7faa96bbcc72/97D123BABF396688F1D7ED9409957EB5.jpg",
+                        "imageurl": "http://192.168.31.197/1.jpeg",
+                        "classname": "mayuan",
+                        "id": "77cc4ae1-9261-4288-aa55-7faa96bbcc72"
+                    }
+                ],
+                "ppturllist": [
+                    {
+                        "name": "sixiu1",
+                        "downloadurl": "http://192.168.31.197www.baidu.com",
+                        "imageurl": "http://192.168.31.197/1.jpeg",
+                        "classname": "mayuan",
+                        "id": "12312312"
+                    }
+                ]
+            },
+            {
+                "courseclassid": "2",
+                "courseclassname": "computer-2",
+                "uploadlist": [],
+                "ppturllist": [
+                    {
+                        "name": "mayuan1",
+                        "downloadurl": "http://192.168.31.197www.google.com",
+                        "imageurl": "http://192.168.31.197/1.jpeg",
+                        "classname": "mayuan",
+                        "id": "123123777"
+                    }
+                ]
+            }
         ]
-      }
-    ]
-  }
+    }
 }
