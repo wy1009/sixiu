@@ -40,7 +40,7 @@ export default {
         userPwd: this.userPwd,
       }).then((res) => {
         if (res.success && res.data.userToken) {
-          this.$router.replace({ name: 'lesson' })
+          this.$router.replace({ name: 'home' })
         }
       })
     }

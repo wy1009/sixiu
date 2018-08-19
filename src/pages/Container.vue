@@ -5,14 +5,14 @@
         <img src="../assets/images/logo.png" alt="北邮马院">
       </h1>
       <ul class="nav" v-if="$store.state.userInfo.usertype === 'student'">
-        <li class="nav-item" :class="$route.name === 'lesson' ? 'active' : ''">
-          <router-link class="nav-link" :to="{ name: 'lesson' }">课程资料</router-link>
+        <li class="nav-item" :class="$route.name === 'home' || $route.name === 'lesson' ? 'active' : ''">
+          <router-link class="nav-link" :to="{ name: 'home' }">课程资料</router-link>
           <ul class="second-nav">
             <li class="second-nav-item"
               v-for="item in courseList"
               :key="item.courseclassid"
             >
-              <router-link :to="{ name: 'lessonDetail', params: { id: item.courseid } }">{{ item.courseclassname }}</router-link>
+              <router-link :to="{ name: 'lesson', params: { id: item.courseid } }">{{ item.courseclassname }}</router-link>
             </li>
           </ul>
         </li>
@@ -21,8 +21,8 @@
         </li>
       </ul>
       <ul class="nav" v-if="$store.state.userInfo.usertype === 'teacher'">
-        <li class="nav-item" :class="$route.name === 'lesson' ? 'active' : ''">
-          <router-link class="nav-link" :to="{ name: 'lesson' }">课程管理</router-link>
+        <li class="nav-item" :class="$route.name === 'home' || $route.name === 'lesson' ? 'active' : ''">
+          <router-link class="nav-link" :to="{ name: 'home' }">课程管理</router-link>
           <ul class="second-nav">
             <li class="second-nav-item"
               v-for="item in courseList"

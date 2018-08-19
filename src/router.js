@@ -4,6 +4,7 @@ import store from './store'
 import Login from './pages/Login.vue'
 import Container from './pages/Container.vue'
 import Password from './pages/Password.vue'
+import Home from './pages/Home.vue'
 import Lesson from './pages/Lesson.vue'
 // 学生
 import HomeWork from './pages/Homework.vue'
@@ -50,12 +51,12 @@ const routes = [{
     component: Test,
   }, {
     // 课程资料 / 课程管理
-    name: 'lesson',
-    path: 'lesson',
-    component: Lesson,
+    name: 'home',
+    path: 'home',
+    component: Home,
   }, {
     // 课程资料 / 课程管理
-    name: 'lessonDetail',
+    name: 'lesson',
     path: 'lesson/:id',
     component: Lesson,
     props: true,
