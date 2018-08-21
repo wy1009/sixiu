@@ -11,12 +11,12 @@
       <article class="part-display" v-if="status === 'list'">
         <ul>
           <li class="news" v-for="item in list" :key="item[`${$route.name}Id`]">
-            <a class="del" @click="del">-</a>
+            <a class="del" @click="del(item.opinionId || item.roastId)">-</a>
             <div class="time">
               <span class="month">{{ new Date(parseInt(item.uploadDate, 10)).getMonth() + 1 }}月</span>
               <span class="date">{{ new Date(parseInt(item.uploadDate, 10)).getDate() }}</span>
             </div>
-            <a class="title" @click="showDetail(item.opinionId)">
+            <a class="title" @click="$route.type === 'opinion' && showDetail(item.opinionId)">
               <div class="name">{{ item.title }}</div>
               <div class="publisher">发布者：{{ item.userName }}</div>
             </a>
@@ -25,16 +25,18 @@
       </article>
       <!-- 展示详情部分 -->
       <article class="part-detail" v-if="status === 'detail'">
-        <header>
-          走进伟人马克思，奏响论文三部曲——马克思主义学院成功举办“青马油新”学术讲座
+        <header class="detail-title">
+          {{ detail.title }}
         </header>
-        <div class="author">
-          <div class="avator"></div>
-          <div class="name">麻阳</div>
-          <div class="time">发布时间 2018 年 06 月 07 日 12:00</div>
+        <div class="author clearfix">
+          <div class="avator"><img :src="detail.photoUrl" alt="作者头像"></div>
+          <div class="name">{{ userName }}</div>
+          <div class="time">发布时间 {{ new Date(parseInt(detail.uploadDate, 10)).getFullYear() }} 年 {{ new Date(parseInt(detail.uploadDate, 10)).getMonth() + 1 }} 月 {{ new Date(parseInt(detail.uploadDate, 10)).getDate() }} 日</div>
         </div>
         <p class="content">
           {{ detail.content }}
+
+          <img :src="detail.imageUrl" alt="观点配图">
         </p>
       </article>
       <!-- 添加消息部分 -->
@@ -72,24 +74,32 @@ export default {
     return {
       status: 'list', // list - 列表，detail - 详情，add - 添加
       list: [],
-      detail: '', // 目前需展示的detail的内容
+      detail: {}, // 目前需展示的detail的内容
     }
   },
   mounted() {
-    ds.getNewsList(this.$route.name).then(({ data }) => {
-      if (data.success) {
-        this.list = data.data[`${this.$route.name}List`]
-      }
-    })
+    this.getList()
   },
   methods: {
+    getList() {
+      ds.getNewsList(this.$route.name).then(({ data }) => {
+        if (data.success) {
+          this.list = data.data[`${this.$route.name}List`]
+        }
+      })
+    },
     toggleStatus(status) {
       this.status = status
     },
-    del() {
+    del(id) {
       const res = confirm('确定删除吗？')
       if (res) {
         // 删除微观点/微吐槽
+        ds.delNews(this.$route.name, { id }).then(({ data }) => {
+          if (data.success) {
+            this.getList()
+          }
+        })
       }
     },
     showDetail(opinionId) {
@@ -172,9 +182,15 @@ export default {
       padding: 15px 0;
       border-bottom: 1px solid #ededed;
 
+      & .name {
+        margin-left: 106px;
+      }
+
       & .publisher {
         font-size: 14px;
         color: #7a7a7a;
+        margin-left: 106px;
+        margin-top: 6px;
       }
     }
 
@@ -230,6 +246,45 @@ export default {
       background: #f0f0f0;
       padding: 6px;
       box-sizing: border-box;
+    }
+  }
+}
+
+.part-detail {
+  padding: 20px 40px;
+  & .detail-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  & .author {
+    margin-top: 20px;
+    & .avator {
+      width: 30px;
+      height: 30px;
+      float: left;
+      & img {
+        width: 100%;
+      }
+    }
+
+    & .name,
+    & .time {
+      float: left;
+      font-size: 14px;
+      color: #888888;
+      line-height: 30px;
+      margin-left: 10px;
+    }
+  }
+
+  & .content {
+    margin-top: 20px;
+    line-height: 30px;
+
+    & img {
+      display: block;
+      margin-top: 20px;
     }
   }
 }

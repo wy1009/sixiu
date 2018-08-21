@@ -58,13 +58,22 @@ const ds = {
       },
     })
   },
+  delNews(type, params) {
+    return axios({
+      method: 'post',
+      url: `/app/${type}/delete`,
+      data: Object.assign({
+        userToken: store.state.userToken,
+      }, params),
+    })
+  },
   getOpinionDetail(params) {
     return axios({
       method: 'post',
       url: 'app/opinion/one',
       data: Object.assign({ userToken: store.state.userToken }, params),
     })
-  }
+  },
 }
 
 export default ds

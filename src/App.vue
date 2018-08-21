@@ -33,5 +33,11 @@ a {
   cursor: pointer;
   color: inherit;
 }
+
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: block;
+}
 </style>
 
