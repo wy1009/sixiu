@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section ppt">
     <header class="section-header">
       <slot name="title"></slot>
       <a class="border-btn" v-if="status === 'display'" @click="toggleStatus('add')">添加</a>

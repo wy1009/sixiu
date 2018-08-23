@@ -35,6 +35,24 @@
     padding: 0 4px;
     color: var(--red);
   }
+
+  &.ppt {
+    & .section-header {
+      background-image: url(../images/icon-ppt.png);
+    }
+  }
+
+  &.audio {
+    & .section-header {
+      background-image: url(../images/icon-audio.png);
+    }
+  }
+
+  &.video {
+    & .section-header {
+      background-image: url(../images/icon-video.png);
+    }
+  }
 }
 
 /* form */

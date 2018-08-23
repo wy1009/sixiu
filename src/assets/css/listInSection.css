@@ -1,24 +1,6 @@
 @import "./section.css";
 
 .section {
-  &.ppt {
-    & .section-header {
-      background-image: url(../images/icon-ppt.png);
-    }
-  }
-
-  &.audio {
-    & .section-header {
-      background-image: url(../images/icon-audio.png);
-    }
-  }
-
-  &.video {
-    & .section-header {
-      background-image: url(../images/icon-video.png);
-    }
-  }
-
   & .home-list {
     margin: 20px 70px;
 
