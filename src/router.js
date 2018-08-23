@@ -11,6 +11,7 @@ import HomeWork from './pages/Homework.vue'
 // 教师
 import News from './pages/News.vue'
 import Test from './pages/Test.vue'
+import LessonAdd from './pages/LessonAdd.vue'
 
 // 路由
 const routes = [{
@@ -64,7 +65,7 @@ const routes = [{
     // 添加课程
     name: 'lessonAdd',
     path: 'lesson/add',
-    // component: LessonAdd,
+    component: LessonAdd,
   }],
 }]
 

@@ -5,48 +5,55 @@
         <h1>
           <img src="../assets/images/logo.png" alt="北邮马院">
         </h1>
+        <!-- 学生 -->
         <ul class="nav" v-if="$store.state.userInfo.usertype === 'student'">
-          <li class="nav-item" :class="$route.name === 'home' || $route.name === 'lesson' ? 'active' : ''">
+          <li class="nav-item" :class="$route.name === 'home' || $route.name === 'lesson' && 'active'">
             <router-link class="nav-link" :to="{ name: 'home' }">课程资料</router-link>
             <ul class="second-nav">
               <li class="second-nav-item"
                 v-for="item in courseList"
-                :class="$route.params.id === item.courseid ? 'active' : ''"
+                :class="$route.params.id === item.courseid && 'active'"
                 :key="item.courseid"
               >
                 <router-link :to="{ name: 'lesson', params: { id: item.courseid } }">{{ item.coursename }}</router-link>
               </li>
             </ul>
           </li>
-          <li class="nav-item" :class="$route.name === 'homework' ? 'active' : ''">
+          <li class="nav-item" :class="$route.name === 'homework' && 'active'">
             <router-link class="nav-link" :to="{ name: 'homework' }">作业上传</router-link>
           </li>
         </ul>
+        <!-- 老师 -->
         <ul class="nav" v-if="$store.state.userInfo.usertype === 'teacher'">
-          <li class="nav-item" :class="$route.name === 'home' || $route.name === 'lesson' ? 'active' : ''">
+          <li class="nav-item" :class="['home', 'lesson', 'lessonAdd'].indexOf($route.name) !== -1 && 'active'">
             <router-link class="nav-link" :to="{ name: 'home' }">课程管理</router-link>
             <ul class="second-nav">
               <li class="second-nav-item"
                 v-for="item in courseList"
                 :key="item.courseclassid"
-                :class="$route.params.id === item.courseclassid ? 'active' : ''"
+                :class="$route.params.id === item.courseclassid && 'active'"
               >
                 <router-link :to="{ name: 'lesson', params: { id: item.courseclassid } }">{{ item.courseclassname }}</router-link>
+              </li>
+              <li class="second-nav-item"
+                :class="$route.name === 'lessonAdd' && 'active'"
+              >
+                <router-link :to="{ name: 'lessonAdd' }">添加课程</router-link>
               </li>
             </ul>
           </li>
           <!-- 该版本暂时不做
-          <li class="nav-item" :class="$route.name === 'test' ? 'active' : ''">
+          <li class="nav-item" :class="$route.name === 'test' && 'active'">
             <router-link class="nav-link" :to="{ name: 'test' }">问卷小测</router-link>
           </li>
           -->
-          <li class="nav-item" :class="$route.name === 'opinion' || $route.name === 'roast' ? 'active' : ''">
+          <li class="nav-item" :class="$route.name === 'opinion' || $route.name === 'roast' && 'active'">
             <router-link class="nav-link" :to="{ name: 'opinion' }">课间消息</router-link>
             <ul class="second-nav">
-              <li class="second-nav-item" :class="$route.name === 'opinion' ? 'active' : ''">
+              <li class="second-nav-item" :class="$route.name === 'opinion' && 'active'">
                 <router-link :to="{ name: 'opinion' }">微观点</router-link>
               </li>
-              <li class="second-nav-item" :class="$route.name === 'roast' ? 'active' : ''">
+              <li class="second-nav-item" :class="$route.name === 'roast' && 'active'">
                 <router-link :to="{ name: 'roast' }">微吐槽</router-link>
               </li>
             </ul>
