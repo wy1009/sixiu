@@ -14,7 +14,7 @@
                 :class="$route.params.id === item.courseid ? 'active' : ''"
                 :key="item.courseid"
               >
-                <router-link :to="{ name: 'lesson', params: { id: item.courseid } }">{{ item.courseclassname }}</router-link>
+                <router-link :to="{ name: 'lesson', params: { id: item.courseid } }">{{ item.coursename }}</router-link>
               </li>
             </ul>
           </li>
@@ -28,8 +28,11 @@
             <ul class="second-nav">
               <li class="second-nav-item"
                 v-for="item in courseList"
-                :key="item.courseid"
-              ><a>{{ item.courseclassname }}</a></li>
+                :key="item.courseclassid"
+                :class="$route.params.id === item.courseclassid ? 'active' : ''"
+              >
+                <router-link :to="{ name: 'lesson', params: { id: item.courseclassid } }">{{ item.courseclassname }}</router-link>
+              </li>
             </ul>
           </li>
           <!-- 该版本暂时不做
@@ -77,7 +80,7 @@ export default {
   mounted() {
     ds.getCourseList().then(({ data }) => {
       if (data.success) {
-        this.courseList = data.data.courseClasses
+        this.courseList = data.data.classdetail
       }
     })
   }

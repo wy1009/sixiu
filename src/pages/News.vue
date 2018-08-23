@@ -120,19 +120,6 @@ export default {
 
 .section-header {
   background-image: url(../assets/images/icon-news.png);
-
-  & .border-btn {
-    float: right;
-  }
-}
-
-.border-btn {
-  font-size: 12px;
-  line-height: 18px;
-  border: 1px solid var(--red);
-  border-radius: 9px;
-  padding: 0 4px;
-  color: var(--red);
 }
 
 .part-display {

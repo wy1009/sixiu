@@ -21,6 +21,19 @@
     background-position: 40px;
     color: var(--red);
     background-color: #f0f0f0;
+
+    & .border-btn {
+      float: right;
+    }
+  }
+
+  & .border-btn {
+    font-size: 12px;
+    line-height: 18px;
+    border: 1px solid var(--red);
+    border-radius: 9px;
+    padding: 0 4px;
+    color: var(--red);
   }
 }
 
