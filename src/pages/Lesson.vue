@@ -20,10 +20,7 @@
       </article>
       <!-- 上传PPT -->
       <article class="part-add" v-if="status === 'add'">
-        <form action="">
-          <input type="file" name="file">
-          <button class="form-submit">上传</button>
-        </form>
+        <upload-file></upload-file>
       </article>
     </section>
     <section class="section ppt">
@@ -44,6 +41,7 @@
 
 <script>
 import ds from '../assets/js/server.js'
+import UploadFile from '../components/UploadFile.vue'
 
 export default {
   props: ['id'],
@@ -81,18 +79,12 @@ export default {
       this.status = status
     }
   },
+  components: {
+    UploadFile,
+  }
 }
 </script>
 
 <style lang="postcss" scoped>
 @import '../assets/css/listInSection.css';
-
-.part-add {
-  padding: 20px 70px;
-}
-
-.form-submit {
-  display: inline-block;
-  width: 100px;
-}
 </style>
