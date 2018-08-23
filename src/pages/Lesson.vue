@@ -1,28 +1,21 @@
 <template>
   <article class="page-lesson">
-    <section class="section ppt">
-      <header class="section-header">
-        课程PPT
-        <a class="border-btn" v-if="status === 'display'" @click="toggleStatus('add')">添加</a>
-        <a class="border-btn" v-if="status === 'add'" @click="toggleStatus('display')">取消</a>
-      </header>
-      <!-- 展示 PPT -->
-      <article class="part-display" v-if="status === 'display'">
-        <ul class="home-list">
-          <template v-if="lessonDetail.ppturllist && lessonDetail.ppturllist.length">
-            <li v-for="item in lessonDetail.ppturllist" :key="item.id">
-              <a :href="item.downloadurl">{{ item.name }}</a>
-              <a class="del-btn" v-if="$store.state.userInfo.usertype === 'teacher'" @click="del">删除</a>
-            </li>
-          </template>
-          <li v-else>暂无</li>
-        </ul>
-      </article>
-      <!-- 上传PPT -->
-      <article class="part-add" v-if="status === 'add'">
-        <upload-file></upload-file>
-      </article>
-    </section>
+    <toggle-section>
+      <!-- 标题 -->
+      <template slot="title">课程PPT</template>
+      <!-- 展示部分 -->
+      <ul class="home-list" slot="display">
+        <template v-if="lessonDetail.ppturllist && lessonDetail.ppturllist.length">
+          <li v-for="item in lessonDetail.ppturllist" :key="item.id">
+            <a :href="item.downloadurl">{{ item.name }}</a>
+            <a class="del-btn" v-if="$store.state.userInfo.usertype === 'teacher'" @click="del">删除</a>
+          </li>
+        </template>
+        <li v-else>暂无</li>
+      </ul>
+      <!-- 上传部分 -->
+      <upload-file slot="add"></upload-file>
+    </toggle-section>
     <section class="section ppt">
       <header class="section-header">
         已上传作业
@@ -41,6 +34,7 @@
 
 <script>
 import ds from '../assets/js/server.js'
+import ToggleSection from '../components/ToggleSection.vue'
 import UploadFile from '../components/UploadFile.vue'
 
 export default {
@@ -77,10 +71,14 @@ export default {
     },
     toggleStatus(status) {
       this.status = status
+    },
+    del() {
+
     }
   },
   components: {
     UploadFile,
+    ToggleSection,
   }
 }
 </script>
