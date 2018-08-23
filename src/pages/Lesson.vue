@@ -42,7 +42,6 @@ export default {
   data() {
     return {
       lessonDetail: [],
-      status: 'display', // 添加 - add，展示 - display
     }
   },
   watch: {
@@ -68,9 +67,6 @@ export default {
           }
         }
       })
-    },
-    toggleStatus(status) {
-      this.status = status
     },
     del() {
 

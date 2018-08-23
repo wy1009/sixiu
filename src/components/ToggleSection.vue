@@ -23,6 +23,11 @@ export default {
       status: 'display', // display - 展示；add - 添加
     }
   },
+  methods: {
+    toggleStatus(status) {
+      this.status = status
+    }
+  }
 }
 </script>
 
