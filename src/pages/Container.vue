@@ -22,6 +22,9 @@
           <li class="nav-item" :class="$route.name === 'homework' && 'active'">
             <router-link class="nav-link" :to="{ name: 'homework' }">作业上传</router-link>
           </li>
+          <li class="nav-item" :class="$route.name === 'grade' && 'active'">
+            <router-link class="nav-link" :to="{ name: 'grade' }">我的成绩</router-link>
+          </li>
         </ul>
         <!-- 老师 -->
         <ul class="nav" v-if="$store.state.userInfo.usertype === 'teacher'">
@@ -47,6 +50,9 @@
             <router-link class="nav-link" :to="{ name: 'test' }">问卷小测</router-link>
           </li>
           -->
+          <li class="nav-item" :class="$route.name === 'grade' && 'active'">
+            <router-link class="nav-link" :to="{ name: 'grade' }">成绩统计</router-link>
+          </li>
           <li class="nav-item" :class="['opinion', 'roast'].indexOf($route.name) !== -1 && 'active'">
             <router-link class="nav-link" :to="{ name: 'opinion' }">课间消息</router-link>
             <ul class="second-nav">

@@ -74,6 +74,15 @@ const ds = {
       data: Object.assign({ userToken: store.state.userToken }, params),
     })
   },
+  getGradeList() {
+    return axios({
+      method: 'post',
+      url: '/app/mine/grade',
+      data: {
+        userToken: store.state.userToken
+      },
+    })
+  }
 }
 
 export default ds

@@ -6,6 +6,7 @@ import Container from './pages/Container.vue'
 import Password from './pages/Password.vue'
 import Home from './pages/Home.vue'
 import Lesson from './pages/Lesson.vue'
+import Grade from './pages/Grade.vue'
 // 学生
 import HomeWork from './pages/Homework.vue'
 // 教师
@@ -22,9 +23,10 @@ const routes = [{
   path: '/',
   component: Container,
   children: [{
-    // 重定向到课程资料 / 课程管理
+    // 首页
+    name: 'home',
     path: '',
-    // redirect: { name: 'lesson' },/
+    component: Home,
   }, {
     // 微观点
     name: 'opinion',
@@ -52,11 +54,6 @@ const routes = [{
     component: Test,
   }, {
     // 课程资料 / 课程管理
-    name: 'home',
-    path: 'home',
-    component: Home,
-  }, {
-    // 课程资料 / 课程管理
     name: 'lesson',
     path: 'lesson/:id',
     component: Lesson,
@@ -66,6 +63,11 @@ const routes = [{
     name: 'lessonAdd',
     path: 'lesson/add',
     component: LessonAdd,
+  }, {
+    // 查看成绩
+    name: 'grade',
+    path: 'grade',
+    component: Grade,
   }],
 }]
 
