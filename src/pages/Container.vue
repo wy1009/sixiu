@@ -7,7 +7,7 @@
         </h1>
         <!-- 学生 -->
         <ul class="nav" v-if="$store.state.userInfo.usertype === 'student'">
-          <li class="nav-item" :class="$route.name === 'home' || $route.name === 'lesson' && 'active'">
+          <li class="nav-item" :class="['home', 'lesson'].indexOf($route.name) !== -1 && 'active'">
             <router-link class="nav-link" :to="{ name: 'home' }">课程资料</router-link>
             <ul class="second-nav">
               <li class="second-nav-item"
@@ -47,7 +47,7 @@
             <router-link class="nav-link" :to="{ name: 'test' }">问卷小测</router-link>
           </li>
           -->
-          <li class="nav-item" :class="$route.name === 'opinion' || $route.name === 'roast' && 'active'">
+          <li class="nav-item" :class="['opinion', 'roast'].indexOf($route.name) !== -1 && 'active'">
             <router-link class="nav-link" :to="{ name: 'opinion' }">课间消息</router-link>
             <ul class="second-nav">
               <li class="second-nav-item" :class="$route.name === 'opinion' && 'active'">

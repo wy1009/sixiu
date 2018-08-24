@@ -16,7 +16,7 @@
               <span class="month">{{ new Date(parseInt(item.uploadDate, 10)).getMonth() + 1 }}月</span>
               <span class="date">{{ new Date(parseInt(item.uploadDate, 10)).getDate() }}</span>
             </div>
-            <a class="title" @click="$route.type === 'opinion' && showDetail(item.opinionId)">
+            <a class="title" @click="$route.name === 'opinion' && showDetail(item.opinionId)">
               <div class="name">{{ item.title }}</div>
               <div class="publisher">发布者：{{ item.userName }}</div>
             </a>
@@ -52,8 +52,7 @@
             </label>
             <a class="border-btn">选择</a>
             <ul class="img-list">
-              <li>视察图片1.jpg<a class="del-btn">删除</a></li>
-              <li>视察图片1.jpg<a class="del-btn">删除</a></li>
+              <input type="file">
             </ul>
           </div>
           <div class="form-item content">
@@ -276,4 +275,3 @@ export default {
   }
 }
 </style>
-

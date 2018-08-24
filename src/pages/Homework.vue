@@ -66,7 +66,7 @@ export default {
 
       let formData = new FormData()
 
-      formData.append('userToken', localStorage['sixiuUserToken'])
+      formData.append('userToken', this.$store.state.userToken)
       formData.append('courseId', form.courseId.value)
       formData.append('file', form.file.files[0])
       formData.append('name', form.file.files[0].name)
