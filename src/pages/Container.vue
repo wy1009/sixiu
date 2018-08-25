@@ -50,7 +50,7 @@
             <router-link class="nav-link" :to="{ name: 'test' }">问卷小测</router-link>
           </li>
           -->
-          <li class="nav-item" :class="$route.name === 'grade' && 'active'" @click="getGradeList">
+          <li class="nav-item" :class="$route.name === 'grade' && 'active'" v-if="gradeCourseList[0]">
             <router-link class="nav-link" :to="{ name: 'grade', params: { id: gradeCourseList[0].courseid } }">成绩统计</router-link>
             <ul class="second-nav">
               <li class="second-nav-item"
@@ -72,6 +72,9 @@
                 <router-link :to="{ name: 'roast' }">微吐槽</router-link>
               </li>
             </ul>
+          </li>
+          <li class="nav-item" :class="$route.name === 'uploadInfo' && 'active'">
+            <router-link class="nav-link" :to="{ name: 'uploadInfo' }">信息导入</router-link>
           </li>
         </ul>
       </aside>

@@ -58,26 +58,28 @@ export default {
 <style lang="postcss" scoped>
 @import '../assets/css/section.css';
 
-table {
-  width: 100%;
-  table-layout: fixed;
-  text-align: center;
-  line-height: 26px;
-  margin-bottom: 2px;
+.dd {
+  & table {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    line-height: 26px;
+    margin-bottom: 2px;
 
-  & thead,
-  & tbody {
-    border-bottom: 1px solid #ccc;
+    & thead,
+    & tbody {
+      border-bottom: 1px solid #ccc;
+    }
   }
-}
 
-.sum {
-  margin: 0 30px;
-  line-height: 26px;
+  & .sum {
+    margin: 0 30px;
+    line-height: 26px;
 
-  & span {
-    display: inline-block;
-    width: 110px;
+    & span {
+      display: inline-block;
+      width: 110px;
+    }
   }
 }
 </style>

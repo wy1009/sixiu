@@ -13,6 +13,7 @@ import HomeWork from './pages/Homework.vue'
 import News from './pages/News.vue'
 import Test from './pages/Test.vue'
 import LessonAdd from './pages/LessonAdd.vue'
+import UploadInfo from './pages/UploadInfo.vue'
 
 // 路由
 const routes = [{
@@ -68,6 +69,11 @@ const routes = [{
     name: 'grade',
     path: 'grade/:id',
     component: Grade,
+  }, {
+    // 信息导入
+    name: 'uploadInfo',
+    path: 'upload',
+    component: UploadInfo,
   }],
 }]
 
