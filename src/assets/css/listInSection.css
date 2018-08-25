@@ -12,7 +12,6 @@
       }
 
       & .del-btn {
-        font-size: 14px;
         color: var(--red);
         margin-left: 20px;
       }

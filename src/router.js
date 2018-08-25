@@ -66,7 +66,7 @@ const routes = [{
   }, {
     // 查看成绩
     name: 'grade',
-    path: 'grade',
+    path: 'grade/:id',
     component: Grade,
   }],
 }]

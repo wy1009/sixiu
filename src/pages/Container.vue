@@ -50,8 +50,17 @@
             <router-link class="nav-link" :to="{ name: 'test' }">问卷小测</router-link>
           </li>
           -->
-          <li class="nav-item" :class="$route.name === 'grade' && 'active'">
-            <router-link class="nav-link" :to="{ name: 'grade' }">成绩统计</router-link>
+          <li class="nav-item" :class="$route.name === 'grade' && 'active'" @click="getGradeList">
+            <router-link class="nav-link" :to="{ name: 'grade', params: { id: gradeCourseList[0].courseid } }">成绩统计</router-link>
+            <ul class="second-nav">
+              <li class="second-nav-item"
+                v-for="item in gradeCourseList"
+                :key="item.courseid"
+                :class="$route.params.id === item.courseid && 'active'"
+              >
+                <router-link :to="{ name: 'grade', params: { id: item.courseid } }">{{ item.coursename }}</router-link>
+              </li>
+            </ul>
           </li>
           <li class="nav-item" :class="['opinion', 'roast'].indexOf($route.name) !== -1 && 'active'">
             <router-link class="nav-link" :to="{ name: 'opinion' }">课间消息</router-link>
@@ -87,15 +96,31 @@ import ds from '../assets/js/server'
 export default {
   data() {
     return {
-      courseList: []
+      courseList: [],
+      gradeCourseList: [],
     }
   },
   mounted() {
-    ds.getCourseList().then(({ data }) => {
-      if (data.success) {
-        this.courseList = data.data.classdetail
-      }
-    })
+    this.getCourseList()
+    this.getGradeList()
+  },
+  methods: {
+    getCourseList() {
+      ds.getCourseList().then(({ data }) => {
+        if (data.success) {
+          this.courseList = data.data.classdetail
+        }
+      })
+    },
+    getGradeList() {
+      // 单纯为了取到课程列表，且不敢复用courseList，因为教师端存在我没搞懂的courseclassid和courseid的区别。
+      // 别吐槽我，吐槽后端。
+      ds.getGradeList().then(({ data }) => {
+        if (data.success) {
+          this.gradeCourseList = data.data.list
+        }
+      })
+    }
   }
 }
 </script>
@@ -146,7 +171,6 @@ export default {
           & ul.second-nav {
             display: none;
             text-align: center;
-            font-size: 14px;
             line-height: 1;
             & li.second-nav-item {
               margin-bottom: 10px;
