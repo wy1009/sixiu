@@ -114,13 +114,13 @@ export default {
       }
 
       & .submit {
+        font-size: 16px;
         background-color: var(--red);
         color: #fff;
         text-align: center;
         line-height: 45px;
         width: 100%;
         border: none;
-        font-size: inherit;
         border-radius: 4px;
       }
 

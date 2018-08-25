@@ -54,6 +54,24 @@
       background-image: url(../images/icon-video.png);
     }
   }
+
+  & .dt {
+    line-height: 30px;
+    background: #dcdcdc;
+    padding-left: 30px;
+    margin-top: 8px;
+
+    & a {
+      color: var(--red);
+      margin-left: 16px;
+      font-size: 12px;
+    }
+  }
+
+  & .dd {
+    background: #f0f0f0;
+    padding-bottom: 2px;
+  }
 }
 
 /* form */
