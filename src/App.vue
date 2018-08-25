@@ -14,7 +14,7 @@ html, body, div, p, h1, h2, h3, h4, h5, ol, ul, li, dl, dt, dd, form, input, tex
 
 html, body {
   height: 100%;
-  font-size: 16px;
+  font-size: 14px;
   color: #282828;
 }
 
@@ -32,6 +32,11 @@ a {
   text-decoration: none;
   cursor: pointer;
   color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 .clearfix::after {

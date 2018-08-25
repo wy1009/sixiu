@@ -21,6 +21,7 @@
     background-position: 40px;
     color: var(--red);
     background-color: #f0f0f0;
+    font-size: 16px;
 
     & .border-btn {
       float: right;

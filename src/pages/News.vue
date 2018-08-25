@@ -152,7 +152,6 @@ export default {
         position: absolute;
         left: 2px;
         top: 0;
-        font-size: 14px;
       }
 
       & .date {
@@ -170,10 +169,10 @@ export default {
 
       & .name {
         margin-left: 106px;
+        font-size: 16px;
       }
 
       & .publisher {
-        font-size: 14px;
         color: #7a7a7a;
         margin-left: 106px;
         margin-top: 6px;
@@ -215,7 +214,6 @@ export default {
       margin-top: 20px;
       padding: 16px 10px;
       background: #f0f0f0;
-      font-size: 14px;
 
       & .del-btn {
         margin-left: 20px;
@@ -257,7 +255,6 @@ export default {
     & .name,
     & .time {
       float: left;
-      font-size: 14px;
       color: #888888;
       line-height: 30px;
       margin-left: 10px;

@@ -81,7 +81,6 @@ form.lesson-add {
     & input {
       width: 100%;
       height: 36px;
-      font-size: 14px;
       border-bottom: 1px solid #acacac;
     }
 
@@ -100,7 +99,6 @@ form.lesson-add {
       }
 
       & .class-list {
-        font-size: 14px;
         line-height: 24px;
         position: absolute;
         background: #fff;

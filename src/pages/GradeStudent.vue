@@ -37,13 +37,10 @@ export default {
 @import '../assets/css/section.css';
 
 .page-grade-student {
-  font-size: 14px;
-
   & ul.grade-list {
     padding: 0 20px 20px;
 
     & li {
-      margin-top: 14px;
       line-height: 26px;
       border-bottom: 1px solid #f0f0f0;
       padding: 0 50px;

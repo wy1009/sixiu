@@ -103,10 +103,8 @@ export default {
     margin-left: 70px;
     & li {
       margin-top: 16px;
-      font-size: 14px;
 
       & .del-btn {
-        font-size: 14px;
         color: var(--red);
         margin-left: 20px;
       }
@@ -118,7 +116,6 @@ export default {
   margin: 45px 40px 100px;
   background: #f0f0f0;
   padding: 30px;
-  font-size: 14px;
 
   & .form-item {
     margin-bottom: 30px;
