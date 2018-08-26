@@ -82,6 +82,13 @@ const ds = {
         userToken: store.state.userToken
       },
     })
+  },
+  addOpinion(params) {
+    return axios({
+      method: 'post',
+      url: 'app/opinion/upload',
+      data: params,
+    })
   }
 }
 

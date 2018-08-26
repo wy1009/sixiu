@@ -87,6 +87,7 @@
   border-radius: 11px;
   margin: auto;
   cursor: pointer;
+  text-align: center;
 }
 
 .form-input {

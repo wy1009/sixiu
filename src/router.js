@@ -7,10 +7,11 @@ import Password from './pages/Password.vue'
 import Home from './pages/Home.vue'
 import Lesson from './pages/Lesson.vue'
 import Grade from './pages/Grade.vue'
+import Opinion from './pages/Opinion.vue'
+import Roast from './pages/Roast.vue'
 // 学生
 import HomeWork from './pages/Homework.vue'
 // 教师
-import News from './pages/News.vue'
 import Test from './pages/Test.vue'
 import LessonAdd from './pages/LessonAdd.vue'
 import UploadInfo from './pages/UploadInfo.vue'
@@ -32,12 +33,12 @@ const routes = [{
     // 微观点
     name: 'opinion',
     path: 'opinion',
-    component: News,
+    component: Opinion,
   }, {
     // 微吐槽
     name: 'roast',
     path: 'roast',
-    component: News,
+    component: Roast,
   }, {
     // 作业上传
     name: 'homework',

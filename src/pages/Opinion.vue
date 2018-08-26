@@ -41,23 +41,25 @@
       </article>
       <!-- 添加消息部分 -->
       <article class="part-add" v-if="status === 'add'">
-        <form>
+        <form @submit="submit($event)">
           <div class="form-item title">
             <label>添加标题</label>
-            <input class="form-input" type="text">
+            <input class="form-input" type="text" name="title">
           </div>
           <div class="form-item image">
             <label>
               添加图片
             </label>
-            <a class="border-btn">选择</a>
             <ul class="img-list">
-              <input type="file">
+              <input type="file" name="image">
             </ul>
           </div>
           <div class="form-item content">
             <label>内容</label>
-            <textarea></textarea>
+            <textarea name="content"></textarea>
+          </div>
+          <div class="form-item">
+            <button class="form-submit">发布</button>
           </div>
         </form>
       </article>
@@ -93,7 +95,7 @@ export default {
     del(id) {
       const res = confirm('确定删除吗？')
       if (res) {
-        // 删除微观点/微吐槽
+        // 删除微观点
         ds.delNews(this.$route.name, { id }).then(({ data }) => {
           if (data.success) {
             this.getList()
@@ -106,6 +108,22 @@ export default {
         if (data.success) {
           this.detail = data.data
           this.toggleStatus('detail')
+        }
+      })
+    },
+    submit(e) {
+      e.preventDefault()
+      const form = e.target
+      let formData = new FormData()
+      formData.append('title', form.title.value)
+      formData.append('image', form.image.files[0])
+      formData.append('content', form.content.value)
+      formData.append('userToken', this.$store.state.userToken)
+
+      ds.addOpinion(formData).then(({ data }) => {
+        if (data.success) {
+          this.getList()
+          this.toggleStatus('list')
         }
       })
     }
@@ -166,6 +184,7 @@ export default {
       display: block;
       padding: 15px 0;
       border-bottom: 1px solid #ededed;
+      min-height: 50px;
 
       & .name {
         margin-left: 106px;
@@ -249,6 +268,7 @@ export default {
       float: left;
       & img {
         width: 100%;
+        height: 100%;
       }
     }
 

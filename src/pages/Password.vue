@@ -52,4 +52,3 @@ section.section {
   }
 }
 </style>
-

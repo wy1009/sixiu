@@ -46,7 +46,6 @@ export default {
     }
   },
   mounted() {
-    console.log(ds.getClassList)
     ds.getCourseList().then(({ data }) => {
       if (data.success) {
         let homeworkList = []
