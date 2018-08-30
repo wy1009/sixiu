@@ -3,40 +3,22 @@
     <section class="section">
       <header class="section-header">微吐槽</header>
       <ul class="roast-list">
-        <li class="roast-item">
+        <li class="roast-item" v-for="item in roastList" :key="item.roastId">
           <div class="user">
-            <div class="avatar"><img src="" alt="用户头像"></div>
-            <div class="name">尼古拉斯</div>
-            <div class="anonymous">匿名</div>
+            <div class="avatar"><img :src="item.userImageUrl" alt="用户头像"></div>
+            <div class="name">{{ item.userName }}</div>
+            <div class="anonymous" v-if="item.anonymous">匿名</div>
           </div>
           <div class="content">
-            <p>叫三对空调实在太冷了，让人无法忍受，我又不是冰棍，不需要冻。</p>
-            <img class="content-img" src="" alt="吐槽配图">
+            <p>{{ item.content }}</p>
+            <img class="content-img" :src="item.contentImageUrl" alt="吐槽配图">
             <footer class="content-info clearfix">
-              <div class="time">5分钟前</div>
-              <a class="del">删除</a>
+              <div class="time">{{ item.time }}</div>
+              <a class="del" v-if="item.isRoastOwner" @click="del(item.roastId)">删除</a>
               <div class="like">
-                25
-                <span><img src="" alt="点击点赞"></span>
-              </div>
-            </footer>
-          </div>
-        </li>
-        <li class="roast-item">
-          <div class="user">
-            <div class="avatar"><img src="" alt="用户头像"></div>
-            <div class="name">尼古拉斯</div>
-            <div class="anonymous">匿名</div>
-          </div>
-          <div class="content">
-            <p>叫三对空调实在太冷了，让人无法忍受，我又不是冰棍，不需要冻。</p>
-            <img class="content-img" src="" alt="吐槽配图">
-            <footer class="content-info clearfix">
-              <div class="time">5分钟前</div>
-              <a class="del">删除</a>
-              <div class="like">
-                25
-                <span><img src="" alt="点击点赞"></span>
+                {{ item.followNum }}
+                <a v-if="item.followStatus"><img src="../assets/images/like-active.png" alt="点击取消赞"></a>
+                <a v-else><img src="../assets/images/like.png" alt="点击点赞"></a>
               </div>
             </footer>
           </div>
@@ -45,6 +27,38 @@
     </section>
   </article>
 </template>
+
+<script>
+import ds from '../assets/js/server'
+
+export default {
+  data() {
+    return {
+      roastList: [],
+    }
+  },
+  mounted() {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      ds.getNewsList('roast').then(({ data }) => {
+        if (data.success) {
+          this.roastList = data.data.roastList
+        }
+      })
+    },
+    del(id) {
+      ds.delNews('roast', { id }).then(({ data }) => {
+        if (data.success) {
+          this.getList()
+        }
+      })
+    },
+  },
+}
+</script>
+
 
 <style lang="postcss" scoped>
 @import '../assets/css/section.css';
@@ -67,7 +81,12 @@
       & .avatar {
         width: 80px;
         height: 80px;
-        background: red;
+        overflow: hidden;
+
+        & img {
+          width: 100%;
+          height: 100%;
+        }
       }
 
       & .name {
@@ -91,12 +110,14 @@
 
       & .content-img {
         display: block;
-        width: 200px;
+        max-width: 90%;
+        margin-top: 10px;
       }
 
       & footer.content-info {
         color: #acacac;
         font-size: 12px;
+        margin-top: 10px;
 
         & .time,
         & .del {
@@ -106,6 +127,18 @@
 
         & .like {
           float: right;
+
+          & a {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            vertical-align: bottom;
+            margin-left: 6px;
+          }
+
+          & img {
+            width: 100%;
+          }
         }
       }
     }
