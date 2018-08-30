@@ -1,7 +1,7 @@
 import axios from 'axios'
 import store from '../../store'
 
-axios.defaults.baseURL = 'https://10.3.240.18:9000/App/'
+axios.defaults.baseURL = 'https://szk.bupt.edu.cn/App/'
 
 const ds = {
   getUserInfo() {
