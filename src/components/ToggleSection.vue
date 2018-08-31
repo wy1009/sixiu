@@ -18,21 +18,19 @@
 
 <script>
 export default {
-  data() {
-    return {
-      status: 'display', // display - 展示；add - 添加
-    }
-  },
+  props: ['status'], // display - 展示；add - 添加
   methods: {
     toggleStatus(status) {
-      this.status = status
-    }
-  }
+      this.$emit('toggle-status', status)
+    },
+  },
 }
 </script>
 
 <style lang="postcss" scoped>
 @import '../assets/css/section.css';
+
+.part-add {
+  padding: 0 80px 40px;
+}
 </style>
-
-

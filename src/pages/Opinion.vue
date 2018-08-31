@@ -120,7 +120,7 @@ export default {
       formData.append('content', form.content.value)
       formData.append('userToken', this.$store.state.userToken)
 
-      ds.addOpinion(formData).then(({ data }) => {
+      ds.addNews('opinion', formData).then(({ data }) => {
         if (data.success) {
           this.getList()
           this.toggleStatus('list')

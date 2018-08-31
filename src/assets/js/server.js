@@ -58,6 +58,13 @@ const ds = {
       },
     })
   },
+  addNews(type, params) {
+    return axios({
+      method: 'post',
+      url: `app/${type}/upload`,
+      data: params,
+    })
+  },
   delNews(type, params) {
     return axios({
       method: 'post',
@@ -83,13 +90,6 @@ const ds = {
       },
     })
   },
-  addOpinion(params) {
-    return axios({
-      method: 'post',
-      url: 'app/opinion/upload',
-      data: params,
-    })
-  }
 }
 
 export default ds

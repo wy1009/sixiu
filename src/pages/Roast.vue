@@ -1,8 +1,10 @@
 <template>
   <article class="page-roast">
-    <section class="section">
-      <header class="section-header">微吐槽</header>
-      <ul class="roast-list">
+    <toggle-section @toggle-status="toggleStatus($event)" :status="status">
+      <!-- title -->
+      <template slot="title">微吐槽</template>
+      <!-- display -->
+      <ul class="roast-list" slot="display">
         <li class="roast-item" v-for="item in roastList" :key="item.roastId">
           <div class="user">
             <div class="avatar"><img :src="item.userImageUrl" alt="用户头像"></div>
@@ -24,17 +26,46 @@
           </div>
         </li>
       </ul>
-    </section>
+      <!-- add -->
+      <form @submit="submit($event)" slot="add">
+        <div class="form-item">
+          <label>内容</label>
+          <textarea name="content"></textarea>
+        </div>
+        <div class="form-item">
+          <label>配图</label>
+          <input type="file" name="image">
+        </div>
+        <div class="form-item">
+          <a class="anonymous"
+            v-if="formData.anonymous"
+            @click="formData.anonymous = 0"
+          >解除匿名</a>
+          <a class="anonymous"
+            v-else
+            @click="formData.anonymous = 1"
+          >点击匿名</a>
+        </div>
+        <div class="form-item">
+          <button class="form-submit">发表</button>
+        </div>
+      </form>
+    </toggle-section>
   </article>
 </template>
 
 <script>
 import ds from '../assets/js/server'
+import ToggleSection from '../components/ToggleSection.vue'
 
 export default {
   data() {
     return {
+      status: 'display',
       roastList: [],
+      formData: {
+        anonymous: 0,
+      },
     }
   },
   mounted() {
@@ -55,7 +86,30 @@ export default {
         }
       })
     },
+    submit(e) {
+      e.preventDefault()
+
+      const form = e.target
+
+      let formData = new FormData()
+      formData.append('userToken', this.$store.state.userToken)
+      formData.append('content', form.content.value)
+      formData.append('image', form.image.files[0])
+      formData.append('anonymous', this.formData.anonymous)
+
+      ds.addNews('roast', formData).then(({ data }) => {
+        if (data.success) {
+          this.toggleStatus('display')
+        }
+      })
+    },
+    toggleStatus(status) {
+      this.status = status
+    },
   },
+  components: {
+    ToggleSection,
+  }
 }
 </script>
 
@@ -142,6 +196,29 @@ export default {
         }
       }
     }
+  }
+}
+
+form {
+  & label {
+    display: block;
+  }
+
+  & textarea {
+    margin-top: 10px;
+    width: 100%;
+    height: 240px;
+    background: #f0f0f0;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  & input {
+    margin-top: 10px;
+  }
+
+  & .anonymous {
+    // padding-left: 10px;
   }
 }
 </style>
