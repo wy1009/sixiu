@@ -12,10 +12,10 @@
             <ul class="second-nav">
               <li class="second-nav-item"
                 v-for="item in courseList"
-                :class="$route.params.id === item.courseid && 'active'"
-                :key="item.courseid"
+                :class="$route.params.id === item.id && 'active'"
+                :key="item.id"
               >
-                <router-link :to="{ name: 'lesson', params: { id: item.courseid } }">{{ item.coursename }}</router-link>
+                <router-link :to="{ name: 'lesson', params: { id: item.id } }">{{ item.name }}</router-link>
               </li>
             </ul>
           </li>
@@ -33,10 +33,10 @@
             <ul class="second-nav">
               <li class="second-nav-item"
                 v-for="item in courseList"
-                :key="item.courseclassid"
-                :class="$route.params.id === item.courseclassid && 'active'"
+                :key="item.id"
+                :class="$route.params.id === item.id && 'active'"
               >
-                <router-link :to="{ name: 'lesson', params: { id: item.courseclassid } }">{{ item.courseclassname }}</router-link>
+                <router-link :to="{ name: 'lesson', params: { id: item.id } }">{{ item.name }}</router-link>
               </li>
               <li class="second-nav-item"
                 :class="$route.name === 'lessonAdd' && 'active'"
