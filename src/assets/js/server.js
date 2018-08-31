@@ -20,6 +20,15 @@ const ds = {
       data: params,
     })
   },
+  logout() {
+    return axios({
+      method: 'post',
+      url: 'user/logout',
+      data: {
+        userToken: store.state.userToken,
+      },
+    })
+  },
   // 首页信息
   getHomeList() {
     return axios({

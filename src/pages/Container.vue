@@ -80,7 +80,7 @@
       </aside>
       <article class="main">
         <header>
-          欢迎登录 徐晨阳 注销
+          欢迎登录 {{ $store.state.userInfo.username }} <a @click="logout">注销</a>
         </header>
         <router-view></router-view>
       </article>
@@ -123,7 +123,12 @@ export default {
           this.gradeCourseList = data.data.list
         }
       })
-    }
+    },
+    logout() {
+      ds.logout().then(() => {
+        window.location.reload()
+      })
+    },
   }
 }
 </script>
