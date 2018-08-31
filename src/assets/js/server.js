@@ -48,10 +48,10 @@ const ds = {
       },
     })
   },
-  submitHomework(params) {
+  submitFile(type, params) {
     return axios({
       method: 'post',
-      url: 'file/upload/student',
+      url: `file/upload/${type}`,
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -99,6 +99,7 @@ const ds = {
       },
     })
   },
+  
 }
 
 export default ds

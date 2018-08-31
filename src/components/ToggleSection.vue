@@ -2,8 +2,10 @@
   <section class="section ppt">
     <header class="section-header">
       <slot name="title"></slot>
-      <a class="border-btn" v-if="status === 'display'" @click="toggleStatus('add')">添加</a>
-      <a class="border-btn" v-if="status === 'add'" @click="toggleStatus('display')">取消</a>
+      <template v-if="!disableEdit">
+        <a class="border-btn" v-if="status === 'display'" @click="toggleStatus('add')">添加</a>
+        <a class="border-btn" v-if="status === 'add'" @click="toggleStatus('display')">取消</a>
+      </template>
     </header>
     <!-- 展示 -->
     <article class="part-display" v-if="status === 'display'">
@@ -18,7 +20,7 @@
 
 <script>
 export default {
-  props: ['status'], // display - 展示；add - 添加
+  props: ['status', 'disableEdit'], // display - 展示；add - 添加
   methods: {
     toggleStatus(status) {
       this.$emit('toggle-status', status)
@@ -31,6 +33,6 @@ export default {
 @import '../assets/css/section.css';
 
 .part-add {
-  padding: 0 80px 40px;
+  padding: 0 80px 20px;
 }
 </style>

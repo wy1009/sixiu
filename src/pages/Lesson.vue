@@ -1,21 +1,45 @@
 <template>
   <article class="page-lesson">
-    <toggle-section>
-      <!-- 标题 -->
-      <template slot="title">课程PPT</template>
-      <!-- 展示部分 -->
-      <ul class="home-list" slot="display">
-        <template v-if="lessonDetail.ppturllist && lessonDetail.ppturllist.length">
-          <li v-for="item in lessonDetail.ppturllist" :key="item.id">
-            <a :href="item.downloadurl">{{ item.name }}</a>
-            <a class="del-btn" v-if="$store.state.userInfo.usertype === 'teacher'" @click="del">删除</a>
-          </li>
-        </template>
-        <li v-else>暂无</li>
-      </ul>
-      <!-- 上传部分 -->
-      <upload-file slot="add"></upload-file>
-    </toggle-section>
+    <file-list
+      :list="lessonDetail.ppturllist"
+      type="courseware"
+      title="课程PPT"
+      :status="status.courseware"
+      @toggle-status="toggleStatus($event)"
+      :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
+    ></file-list>
+    <file-list
+      :list="lessonDetail.songList"
+      type="song"
+      title="歌曲精选"
+      :status="status.song"
+      @toggle-status="toggleStatus($event)"
+      :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
+    ></file-list>
+    <file-list
+      :list="lessonDetail.videoList"
+      type="video"
+      title="精选视频"
+      :status="status.video"
+      @toggle-status="toggleStatus($event)"
+      :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
+    ></file-list>
+    <file-list
+      :list="lessonDetail.practiceList"
+      type="practice"
+      title="实践视频"
+      :status="status.practice"
+      @toggle-status="toggleStatus($event)"
+      :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
+    ></file-list>
+    <file-list
+      :list="lessonDetail.homeworkExampleList"
+      type="homework_example"
+      title="优秀作业"
+      :status="status.homework_example"
+      @toggle-status="toggleStatus($event)"
+      :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
+    ></file-list>
     <section class="section ppt">
       <header class="section-header">
         已上传作业
@@ -35,13 +59,21 @@
 <script>
 import ds from '../assets/js/server.js'
 import ToggleSection from '../components/ToggleSection.vue'
-import UploadFile from '../components/UploadFile.vue'
+import FileList from '../components/FileList.vue'
 
 export default {
   props: ['id'],
   data() {
     return {
       lessonDetail: [],
+      status: {
+        courseware: 'display',
+        audio: 'display',
+        video: 'display',
+        song: 'display',
+        practice: 'display',
+        homework_example: 'display',
+      },
     }
   },
   watch: {
@@ -56,25 +88,19 @@ export default {
     getLessonDetail() {
       ds.getCourseList().then(({ data }) => {
         if (data.success) {
-          if (this.$store.state.userInfo.usertype === 'teacher') {
-            this.lessonDetail = data.data.classdetail.find((lesson) => {
-              return lesson.courseclassid === this.id
-            })
-          } else {
-            this.lessonDetail = data.data.classdetail.find((lesson) => {
-              return lesson.courseid === this.id
-            })
-          }
+          this.lessonDetail = data.data.classdetail.find((lesson) => {
+            return lesson.id === this.id
+          })
         }
       })
     },
-    del() {
-
-    }
+    toggleStatus(option) {
+      this.status[option.type] = option.status
+    },
   },
   components: {
-    UploadFile,
     ToggleSection,
+    FileList,
   }
 }
 </script>

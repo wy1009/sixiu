@@ -70,7 +70,7 @@ export default {
       formData.append('file', form.file.files[0])
       formData.append('name', form.file.files[0].name)
 
-      ds.submitHomework(formData)
+      ds.submitFile('student', formData)
     },
     delHomework() {
       const res = confirm('确定删除作业吗？')
