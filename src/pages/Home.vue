@@ -1,9 +1,7 @@
 <template>
   <article class="page-home">
-    <toggle-section v-for="section in homeList" :key="section.title">
-      <!-- 标题 -->
-      <template slot="title">{{ section.title }}</template>
-      <!-- 展示 -->
+    <section class="section ppt" v-for="section in homeList" :key="section.title">
+      <header class="section-header">{{ section.title }}</header>
       <ul class="home-list" slot="display">
         <template v-if="section.list.length">
           <li v-for="item in section.list" :key="item.id">
@@ -13,16 +11,12 @@
         </template>
         <li v-else>暂无</li>
       </ul>
-      <!-- 添加 -->
-      <upload-file slot="add"></upload-file>
-    </toggle-section>
+    </section>
   </article>
 </template>
 
 <script>
 import ds from '../assets/js/server'
-import ToggleSection from '../components/ToggleSection.vue'
-import UploadFile from '../components/UploadFile.vue'
 
 export default {
   props: ['id'],
@@ -46,10 +40,6 @@ export default {
       }
     },
   },
-  components: {
-    ToggleSection,
-    UploadFile,
-  }
 }
 </script>
 
