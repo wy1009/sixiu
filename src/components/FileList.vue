@@ -40,13 +40,18 @@ export default {
 
       let formData = new FormData()
       formData.append('userToken', this.$store.state.userToken)
-      formData.append('courseId', this.$route.params.id)
+      if (this.$store.state.userInfo.usertype === 'teacher') {
+        formData.append('courseClassId', this.$route.params.id)
+      } else {
+        formData.append('courseId', this.$route.params.id)
+      }
       formData.append('file', form.file.files[0])
       formData.append('name', form.file.files[0].name)
-      formData.append('type', this.type)
+      formData.append('type', this.type.toUpperCase())
 
       ds.submitFile(this.$store.state.userInfo.usertype, formData).then(({ data }) => {
         if (data.success) {
+          this.$emit('submit')
           this.toggleStatus('display')
         }
       })
@@ -67,6 +72,7 @@ export default {
   & .form-submit {
     display: inline-block;
     width: 100px;
+    margin-left: 10px;
   }
 }
 </style>
