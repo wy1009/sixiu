@@ -8,7 +8,7 @@
           <ul>
             <li v-for="(item, index) in homeworkList" :key="item.id">
               <a :href="item.downloadurl"><span>{{ index + 1 }}. {{ item.name }}</span></a>
-              <a class="del-btn" @click="delHomework">删除</a>
+              <a class="del-btn" @click="delHomework(item.id)">删除</a>
             </li>
           </ul>
         </section>
@@ -46,18 +46,21 @@ export default {
     }
   },
   mounted() {
-    ds.getCourseList().then(({ data }) => {
-      if (data.success) {
-        let homeworkList = []
-        data.data.classdetail.forEach((course) => {
-          homeworkList = homeworkList.concat(course.uploadlist)
-        })
-        this.homeworkList = homeworkList
-        this.classList = data.data.courseClasses
-      }
-    })
+    this.getCourseList()
   },
   methods: {
+    getCourseList() {
+      ds.getCourseList().then(({ data }) => {
+        if (data.success) {
+          let homeworkList = []
+          data.data.classdetail.forEach((course) => {
+            homeworkList = homeworkList.concat(course.uploadlist)
+          })
+          this.homeworkList = homeworkList
+          this.classList = data.data.courseClasses
+        }
+      })
+    },
     submit(e) {
       e.preventDefault()
 
@@ -72,15 +75,15 @@ export default {
 
       ds.submitFile('student', formData)
     },
-    delHomework() {
+    delHomework(id) {
       const res = confirm('确定删除作业吗？')
 
       if (res) {
-        console.log('确定删除')
-      } else {
-        console.log('取消')
+        ds.delFile({ id: [id] }).then(({ data }) => {
+          this.getCourseList()
+        })
       }
-    }
+    },
   }
 }
 </script>
