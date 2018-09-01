@@ -91,7 +91,9 @@
       </aside>
       <article class="main">
         <header>
-          欢迎登录 {{ $store.state.userInfo.username }} <a @click="logout">注销</a>
+          欢迎登录 {{ $store.state.userInfo.username }}
+          <router-link :to="{ name: 'password' }">修改密码</router-link>
+          <a @click="logout">注销</a>
         </header>
         <router-view></router-view>
       </article>
@@ -217,6 +219,10 @@ export default {
         text-align: right;
         color: var(--red);
         margin-bottom: 70px;
+
+        & a {
+          margin-left: 10px;
+        }
       }
     }
   }

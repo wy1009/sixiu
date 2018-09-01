@@ -2,24 +2,53 @@
   <div class="page-password">
     <section class="section">
       <header class="section-header">修改密码</header>
-      <form action="">
+      <form @submit="submit">
         <div class="form-item">
           <label>原始密码</label>
-          <input class="form-input" type="password">
+          <input class="form-input" type="password" name="oldPwd">
         </div>
         <div class="form-item">
           <label>新密码</label>
-          <input class="form-input" type="password">
+          <input class="form-input" type="password" name="userPwd">
         </div>
         <div class="form-item">
           <label>再次输入新密码</label>
-          <input class="form-input" type="password">
+          <input class="form-input" type="password" name="repeatPwd">
         </div>
         <button class="form-submit">保存修改</button>
       </form>
     </section>
   </div>
 </template>
+
+<script>
+import ds from '../assets/js/server'
+
+export default {
+  methods: {
+    submit(e) {
+      e.preventDefault()
+      const form = e.target
+
+      const userPwd = form.userPwd.value
+      const oldPwd = form.oldPwd.value
+      const repeatPwd = form.repeatPwd.value
+
+      if (repeatPwd !== userPwd) {
+        alert('新旧密码不一致')
+        return
+      }
+
+      ds.changePassword({ oldPwd, userPwd }).then(({ data }) => {
+        if (data.success) {
+          window.location.reload()
+        }
+      })
+    },
+  }
+}
+</script>
+
 
 <style lang="postcss" scoped>
 @import "../assets/css/section.css";
@@ -38,7 +67,6 @@ section.section {
         line-height: 24px;
         width: 130px;
         padding-right: 20px;
-        text-align: right;
       }
 
       & input.form-input {

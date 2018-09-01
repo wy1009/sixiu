@@ -121,6 +121,13 @@ const ds = {
       },
     })
   },
+  changePassword(params) {
+    return axios({
+      method: 'post',
+      url: 'app/mine/passwordchange',
+      data: Object.assign({ userToken: store.state.userToken }, params),
+    })
+  },
 }
 
 export default ds
