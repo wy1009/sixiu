@@ -6,15 +6,16 @@ import Container from './pages/Container.vue'
 import Password from './pages/Password.vue'
 import Home from './pages/Home.vue'
 import Lesson from './pages/Lesson.vue'
-import Grade from './pages/Grade.vue'
 import Opinion from './pages/Opinion.vue'
 import Roast from './pages/Roast.vue'
 // 学生
 import HomeWork from './pages/Homework.vue'
+import GradeStudent from './pages/GradeStudent.vue'
 // 教师
 import Test from './pages/Test.vue'
 import LessonAdd from './pages/LessonAdd.vue'
 import UploadInfo from './pages/UploadInfo.vue'
+import GradeTeacher from './pages/GradeTeacher.vue'
 
 // 路由
 const routes = [{
@@ -66,10 +67,15 @@ const routes = [{
     path: 'lesson/add',
     component: LessonAdd,
   }, {
-    // 查看成绩
+    // 教师查看成绩
     name: 'grade',
     path: 'grade/:id',
-    component: Grade,
+    component: GradeTeacher,
+  }, {
+    // 我的成绩
+    name: 'myGrade',
+    path: 'grade/mine',
+    component: GradeStudent,
   }, {
     // 信息导入
     name: 'uploadInfo',

@@ -22,8 +22,19 @@
           <li class="nav-item" :class="$route.name === 'homework' && 'active'">
             <router-link class="nav-link" :to="{ name: 'homework' }">作业上传</router-link>
           </li>
-          <li class="nav-item" :class="$route.name === 'grade' && 'active'">
-            <router-link class="nav-link" :to="{ name: 'grade' }">我的成绩</router-link>
+          <li class="nav-item" :class="['opinion', 'roast'].indexOf($route.name) !== -1 && 'active'">
+            <router-link class="nav-link" :to="{ name: 'opinion' }">课间消息</router-link>
+            <ul class="second-nav">
+              <li class="second-nav-item" :class="$route.name === 'opinion' && 'active'">
+                <router-link :to="{ name: 'opinion' }">微观点</router-link>
+              </li>
+              <li class="second-nav-item" :class="$route.name === 'roast' && 'active'">
+                <router-link :to="{ name: 'roast' }">微吐槽</router-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item" :class="$route.name === 'myGrade' && 'active'">
+            <router-link class="nav-link" :to="{ name: 'myGrade' }">我的成绩</router-link>
           </li>
         </ul>
         <!-- 老师 -->

@@ -80,11 +80,14 @@ export default {
       })
     },
     del(id) {
-      ds.delNews('roast', { id }).then(({ data }) => {
-        if (data.success) {
-          this.getList()
-        }
-      })
+      const res = confirm('确定删除吗？')
+      if (res) {
+        ds.delNews('roast', { id }).then(({ data }) => {
+          if (data.success) {
+            this.getList()
+          }
+        })
+      }
     },
     submit(e) {
       e.preventDefault()
