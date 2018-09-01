@@ -75,6 +75,13 @@ const ds = {
       data: params,
     })
   },
+  delFile(params) {
+    return axios({
+      method: 'post',
+      url: 'file/delete',
+      data: Object.assign({ userToken: store.state.userToken }, params),
+    })
+  },
   getNewsList(type) {
     return axios({
       method: 'post',

@@ -6,7 +6,7 @@
         <template v-if="section.list.length">
           <li v-for="item in section.list" :key="item.id">
             <a :href="item.downloadurl">{{ item.name }}</a>
-            <a class="del-btn" v-if="$store.state.userInfo.usertype === 'teacher'" @click="del">删除</a>
+            <a class="del-btn" v-if="$store.state.userInfo.usertype === 'teacher'" @click="del(item.id)">删除</a>
           </li>
         </template>
         <li v-else>暂无</li>
@@ -26,17 +26,24 @@ export default {
     }
   },
   mounted() {
-    ds.getHomeList().then(({ data }) => {
-      if (data.success) {
-        this.homeList = data.data.homelist
-      }
-    })
+    this.getHomeList()
   },
   methods: {
-    del() {
+    getHomeList() {
+      ds.getHomeList().then(({ data }) => {
+        if (data.success) {
+          this.homeList = data.data.homelist
+        }
+      })
+    },
+    del(id) {
       const res = confirm('确定删除吗？')
       if (res) {
-        // 删除项目
+        ds.delFile({ id: [id] }).then(({ data }) => {
+          if (data.success) {
+            this.getHomeList()
+          }
+        })
       }
     },
   },

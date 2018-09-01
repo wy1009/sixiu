@@ -7,7 +7,7 @@
       <template v-if="list && list.length">
         <li v-for="item in list" :key="item.id">
           <a :href="item.downloadurl">{{ item.name }}</a>
-          <a class="del-btn" v-if="!disableEdit" @click="del">删除</a>
+          <a class="del-btn" v-if="!disableEdit" @click="del(item.id)">删除</a>
         </li>
       </template>
       <li v-else>暂无</li>
@@ -33,8 +33,15 @@ export default {
         status,
       })
     },
-    del() {
-
+    del(id) {
+      const res = confirm('确定删除吗？')
+      if (res) {
+        ds.delFile({ id: [id] }).then(({ data }) => {
+          if (data.success) {
+            this.$emit('refresh-list')
+          }
+        })
+      }
     },
     submit(e) {
       e.preventDefault()
@@ -54,7 +61,7 @@ export default {
 
       ds.submitFile(this.$store.state.userInfo.usertype, formData).then(({ data }) => {
         if (data.success) {
-          this.$emit('submit')
+          this.$emit('refresh-list')
           this.toggleStatus('display')
         }
       })

@@ -7,7 +7,7 @@
       :status="status.courseware"
       @toggle-status="toggleStatus($event)"
       :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
-      @submit="getLessonDetail"
+      @refresh-list="getLessonDetail"
     ></file-list>
     <file-list
       :list="lessonDetail.songList"
@@ -16,7 +16,7 @@
       :status="status.song"
       @toggle-status="toggleStatus($event)"
       :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
-      @submit="getLessonDetail"
+      @refresh-list="getLessonDetail"
     ></file-list>
     <file-list
       :list="lessonDetail.videoList"
@@ -25,7 +25,7 @@
       :status="status.video"
       @toggle-status="toggleStatus($event)"
       :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
-      @submit="getLessonDetail"
+      @refresh-list="getLessonDetail"
     ></file-list>
     <file-list
       :list="lessonDetail.practiceList"
@@ -34,7 +34,7 @@
       :status="status.practice"
       @toggle-status="toggleStatus($event)"
       :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
-      @submit="getLessonDetail"
+      @refresh-list="getLessonDetail"
     ></file-list>
     <file-list
       :list="lessonDetail.homeworkExampleList"
@@ -43,7 +43,7 @@
       :status="status.homework_example"
       @toggle-status="toggleStatus($event)"
       :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
-      @submit="getLessonDetail"
+      @refresh-list="getLessonDetail"
     ></file-list>
     <section class="section ppt">
       <header class="section-header">
