@@ -2,6 +2,7 @@ import axios from 'axios'
 import store from '../../store'
 
 axios.defaults.baseURL = 'https://szk.bupt.edu.cn/App/'
+// axios.defaults.baseURL = 'https://10.3.240.18:9000/App/'
 
 const ds = {
   getUserInfo() {
@@ -48,6 +49,22 @@ const ds = {
       },
     })
   },
+  searchCourseList() {
+    return axios({
+      method: 'post',
+      url: 'app/courseclass/addreq',
+      data: {
+        userToken: store.state.userToken,
+      },
+    })
+  },
+  submitCourseClass(params) {
+    return axios({
+      method: 'post',
+      url: '/app/courseclass/add',
+      data: Object.assign({ userToken: store.state.userToken }, params),
+    })
+  },
   submitFile(type, params) {
     return axios({
       method: 'post',
@@ -78,9 +95,7 @@ const ds = {
     return axios({
       method: 'post',
       url: `/app/${type}/delete`,
-      data: Object.assign({
-        userToken: store.state.userToken,
-      }, params),
+      data: Object.assign({ userToken: store.state.userToken }, params),
     })
   },
   getOpinionDetail(params) {
@@ -99,7 +114,6 @@ const ds = {
       },
     })
   },
-  
 }
 
 export default ds

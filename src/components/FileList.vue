@@ -33,6 +33,9 @@ export default {
         status,
       })
     },
+    del() {
+
+    },
     submit(e) {
       e.preventDefault()
 
