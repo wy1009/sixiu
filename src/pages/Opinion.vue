@@ -36,7 +36,7 @@
         <p class="content">
           {{ detail.content }}
 
-          <img :src="detail.imageUrl" alt="观点配图">
+          <img v-if="detail.imageUrl" :src="detail.imageUrl" alt="观点配图">
         </p>
       </article>
       <!-- 添加消息部分 -->
@@ -116,7 +116,7 @@ export default {
       const form = e.target
       let formData = new FormData()
       formData.append('title', form.title.value)
-      formData.append('image', form.image.files[0])
+      formData.append('file', form.image.files[0])
       formData.append('content', form.content.value)
       formData.append('userToken', this.$store.state.userToken)
 

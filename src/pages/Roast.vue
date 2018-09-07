@@ -13,7 +13,7 @@
           </div>
           <div class="content">
             <p>{{ item.content }}</p>
-            <img class="content-img" :src="item.contentImageUrl" alt="吐槽配图">
+            <img v-if="item.contentImageUrl" class="content-img" :src="item.contentImageUrl" alt="吐槽配图">
             <footer class="content-info clearfix">
               <div class="time">{{ item.time }}</div>
               <a class="del" v-if="item.isRoastOwner" @click="del(item.roastId)">删除</a>
@@ -40,7 +40,7 @@
           <a class="anonymous"
             v-if="formData.anonymous"
             @click="formData.anonymous = 0"
-          >解除匿名</a>
+          >点击解除匿名</a>
           <a class="anonymous"
             v-else
             @click="formData.anonymous = 1"
@@ -97,11 +97,12 @@ export default {
       let formData = new FormData()
       formData.append('userToken', this.$store.state.userToken)
       formData.append('content', form.content.value)
-      formData.append('image', form.image.files[0])
+      formData.append('file', form.image.files[0])
       formData.append('anonymous', this.formData.anonymous)
 
       ds.addNews('roast', formData).then(({ data }) => {
         if (data.success) {
+          this.getList()
           this.toggleStatus('display')
         }
       })
