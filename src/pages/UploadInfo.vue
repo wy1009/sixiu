@@ -2,33 +2,57 @@
   <article class="page-upload-info">
     <section class="section">
       <header class="section-header">导入信息</header>
-      <div class="btn-wrap">
-        <a class="btn">导入成绩</a>
-        <a class="btn">导入学生信息</a>
-      </div>
-      <dl>
-        <dt class="dt">学生信息</dt>
-        <dd class="dd">
-          <ul>
-            <li>学生成绩信息1</li>
-            <li>学生成绩信息2</li>
-          </ul>
-        </dd>
-        <dt class="dt">成绩</dt>
-        <dd class="dd">
-          <ul>
-            <li>思想道德修养一般成绩</li>
-            <li>思想道德修养一般成绩</li>
-            <li>思想道德修养一般成绩</li>
-            <li>思想道德修养一般成绩</li>
-            <li>思想道德修养一般成绩</li>
-            <li>思想道德修养一般成绩</li>
-          </ul>
-        </dd>
-      </dl>
+      <form class="form" @submit="submit">
+        <div class="form-item">
+          <input type="file" name="file">
+        </div>
+        <div class="form-item">
+          <select name="type">
+            <option v-for="item in typeList" :key="item">{{ item }}</option>
+          </select>
+        </div>
+        <div class="form-item">
+          <button class="form-submit">导入</button>
+        </div>
+      </form>
     </section>
   </article>
 </template>
+
+<script>
+import ds from '../assets/js/server'
+
+export default {
+  data() {
+    return {
+      typeList: ['class', 'course', 'courseclass', 'courseclassrelation', 'grade', 'user'],
+    }
+  },
+  methods: {
+    submit(e) {
+      e.preventDefault()
+
+      const form = e.currentTarget
+
+      let formData = new FormData()
+
+      formData.append('userToken', this.$store.state.userToken)
+      formData.append('type', form.type.value)
+      formData.append('file', form.file.files[0])
+      formData.append('name', form.file.files[0].name)
+
+      ds.submitFile('data', formData).then(({ data }) => {
+        if (data.success) {
+          alert('导入成功！')
+        } else {
+          alert(JSON.stringify(data))
+        }
+      })
+    },
+  },
+}
+</script>
+
 
 <style lang="postcss" scoped>
 @import '../assets/css/section.css';
@@ -36,8 +60,10 @@
 .section {
   padding-bottom: 20px;
 
-  & .btn-wrap {
+  & .form {
     margin: 20px 70px;
+    margin-bottom: 0;
+
     & .btn {
       display: inline-block;
       width: 120px;
