@@ -73,7 +73,14 @@ export default {
       formData.append('file', form.file.files[0])
       formData.append('name', form.file.files[0].name)
 
-      ds.submitFile('student', formData)
+      ds.submitFile('student', formData).then(({ data }) => {
+        if (data.success) {
+          this.getCourseList()
+          alert('上传成功！')
+        } else {
+          alert(JSON.stringify(data))
+        }
+      })
     },
     delHomework(id) {
       const res = confirm('确定删除作业吗？')
