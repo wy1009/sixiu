@@ -29,11 +29,11 @@
         </table>
         <p class="sum">
           <span>总人数</span>
-          <span>32</span>
+          <span>{{ grade.grades.length }}</span>
         </p>
         <p class="sum">
           <span>平均成绩</span>
-          <span>80.12</span>
+          <span>{{ averageGrade }}</span>
         </p>
       </template>
       <p v-else class="info">暂无学生成绩</p>
@@ -49,11 +49,17 @@ export default {
       showDetail: false, // 展开 - true，收起 - false
     }
   },
+  computed: {
+    averageGrade() {
+      const grades = this.grade.grades
+      return (grades.reduce((accumulator, cur) => accumulator + cur.grade, 0) / grades.length).toFixed(2)
+    },
+  },
   methods: {
     toggleDetail(showDetail) {
       this.showDetail = showDetail
-    }
-  }
+    },
+  },
 }
 </script>
 
