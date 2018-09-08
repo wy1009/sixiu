@@ -88,7 +88,7 @@ const router = new Router({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (to.name === 'login') {
     next()
   }
@@ -96,15 +96,17 @@ router.beforeEach((to, from, next) => {
   if (!store.state.userInfo.username) {
     const sixiuUserToken = window.localStorage.sixiuUserToken
     if (sixiuUserToken) {
-      store.dispatch('setUserToken', sixiuUserToken)
-      store.dispatch('getUserInfo').then(() => {
-        if (!store.state.userInfo.username) {
-          next({ name: 'login' })
-        } else {
-          next()
-        }
-      })
+      await store.dispatch('setUserToken', sixiuUserToken)
     }
+    store.dispatch('getUserInfo').then(() => {
+      if (!store.state.userInfo.username) {
+        next({ name: 'login' })
+      } else {
+        next()
+      }
+    })
+  } else {
+    next()
   }
 })
 
