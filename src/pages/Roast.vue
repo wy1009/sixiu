@@ -7,9 +7,15 @@
       <ul class="roast-list" slot="display">
         <li class="roast-item" v-for="(item, index) in roastList" :key="item.roastId">
           <div class="user">
-            <div class="avatar"><img :src="item.userImageUrl" alt="用户头像"></div>
-            <div class="name">{{ item.userName }}</div>
-            <div class="anonymous" v-if="item.anonymous">匿名</div>
+            <template v-if="item.anonymous">
+              <div class="avatar"><img src="../assets/images/unknown.png" alt="你们都不知道我在致敬MysticMessenger哼哼"></div>
+              <div class="name">Unknown</div>
+              <div class="anonymous">匿名</div>
+            </template>
+            <template v-else>
+              <div class="avatar"><img :src="item.userImageUrl" alt="用户头像"></div>
+              <div class="name">{{ item.userName }}</div>
+            </template>
           </div>
           <div class="content">
             <p>{{ item.content }}</p>
