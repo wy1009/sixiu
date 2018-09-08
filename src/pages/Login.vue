@@ -85,7 +85,7 @@ export default {
 
     & .logo {
       width: 120px;
-      margin: 37px auto 0;
+      margin: 50px auto 0;
 
       & img {
         width: 100%;
