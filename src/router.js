@@ -94,9 +94,18 @@ router.beforeEach((to, from, next) => {
   }
 
   if (!store.state.userInfo.username) {
-    next({ name: 'login' })
+    const sixiuUserToken = window.localStorage.sixiuUserToken
+    if (sixiuUserToken) {
+      store.dispatch('setUserToken', sixiuUserToken)
+      store.dispatch('getUserInfo').then(() => {
+        if (!store.state.userInfo.username) {
+          next({ name: 'login' })
+        } else {
+          next()
+        }
+      })
+    }
   }
-  next()
 })
 
 export default router

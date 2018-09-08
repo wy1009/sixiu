@@ -33,11 +33,22 @@ export default {
   },
   methods: {
     ...mapActions(['login']),
+    encodePassword(pwd) {
+      let sb = ''
+      Array.prototype.forEach.call(pwd, (item, i) => {
+        if (i % 2 == 0) {
+          sb += String.fromCharCode(item.charCodeAt() - 1)
+        } else {
+          sb += String.fromCharCode(item.charCodeAt() + 1)
+        }
+      })
+      return sb
+    },
     submit(e) {
       e.preventDefault()
       this.login({
         userId: this.userId,
-        userPwd: this.userPwd,
+        userPwd: this.encodePassword(this.userPwd),
       }).then((res) => {
         if (res.success && res.data.userToken) {
           this.$router.replace({ name: 'home' })

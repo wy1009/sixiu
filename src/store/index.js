@@ -22,18 +22,20 @@ export default new Vuex.Store({
       const { data } = await ds.login(params)
       if (data.success) {
         context.commit('setUserToken', data.data.userToken)
+        window.localStorage.sixiuUserToken = data.data.userToken
       }
-      await context.dispatch('getUserInfo', {
-        userToken: data.data.userToken
-      })
+      await context.dispatch('getUserInfo')
       return data
     },
-    getUserInfo(context, params) {
-      return ds.getUserInfo(params).then(({ data }) => {
+    getUserInfo(context) {
+      return ds.getUserInfo().then(({ data }) => {
         if (data.success) {
           context.commit('setUserInfo', data.data)
         }
       })
-    }
+    },
+    setUserToken(context, userToken) {
+      context.commit('setUserToken', userToken)
+    },
   }
 })
