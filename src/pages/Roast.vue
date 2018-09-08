@@ -82,7 +82,7 @@ export default {
     del(id) {
       const res = confirm('确定删除吗？')
       if (res) {
-        ds.delNews('roast', { id }).then(({ data }) => {
+        ds.delNews('roast', { roastId: id }).then(({ data }) => {
           if (data.success) {
             this.getList()
           }
@@ -116,7 +116,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="postcss" scoped>
 @import '../assets/css/section.css';
@@ -226,4 +225,3 @@ form {
   }
 }
 </style>
-

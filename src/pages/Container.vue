@@ -146,7 +146,6 @@ export default {
 }
 </script>
 
-
 <style lang="postcss" scoped>
 @import "../assets/css/section.css";
 

@@ -99,7 +99,7 @@ export default {
       ds.submitCourseClass({
         courseId: this.selectedCourse,
         classlist: this.selectedClassList.join(','),
-        courseclassid: form.courseclassid.value,
+        courseclassId: form.courseclassid.value,
         courseclassname: form.courseclassname.value,
       }).then(({ data }) => {
         if (data.success) {

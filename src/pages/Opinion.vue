@@ -96,7 +96,7 @@ export default {
       const res = confirm('确定删除吗？')
       if (res) {
         // 删除微观点
-        ds.delNews(this.$route.name, { id }).then(({ data }) => {
+        ds.delNews(this.$route.name, { opinionId: id }).then(({ data }) => {
           if (data.success) {
             this.getList()
           }
@@ -130,7 +130,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="postcss" scoped>
 @import "../assets/css/section.css";
