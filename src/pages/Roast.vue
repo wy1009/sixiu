@@ -5,7 +5,7 @@
       <template slot="title">微吐槽</template>
       <!-- display -->
       <ul class="roast-list" slot="display">
-        <li class="roast-item" v-for="item in roastList" :key="item.roastId">
+        <li class="roast-item" v-for="(item, index) in roastList" :key="item.roastId">
           <div class="user">
             <div class="avatar"><img :src="item.userImageUrl" alt="用户头像"></div>
             <div class="name">{{ item.userName }}</div>
@@ -19,8 +19,8 @@
               <a class="del" v-if="item.isRoastOwner" @click="del(item.roastId)">删除</a>
               <div class="like">
                 {{ item.followNum }}
-                <a v-if="item.followStatus"><img src="../assets/images/like-active.png" alt="点击取消赞"></a>
-                <a v-else><img src="../assets/images/like.png" alt="点击点赞"></a>
+                <a @click="toggleLike('delete', index)" v-if="item.followStatus"><img src="../assets/images/like-active.png" alt="点击取消赞"></a>
+                <a @click="toggleLike('add', index)" v-else><img src="../assets/images/like.png" alt="点击点赞"></a>
               </div>
             </footer>
           </div>
@@ -110,10 +110,17 @@ export default {
     toggleStatus(status) {
       this.status = status
     },
+    toggleLike(type, index) {
+      ds.toggleLike(type, {
+        roastId: this.roastList[index].roastId,
+      }).then(() => {
+        this.getList()
+      })
+    },
   },
   components: {
     ToggleSection,
-  }
+  },
 }
 </script>
 

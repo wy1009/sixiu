@@ -138,6 +138,13 @@ const ds = {
       data: Object.assign({ userToken: store.state.userToken }, params),
     })
   },
+  toggleLike(type, params) {
+    return axios({
+      method: 'post',
+      url: `/app/roast/${type}Follower`,
+      data: Object.assign({ userToken: store.state.userToken }, params),
+    })
+  },
 }
 
 export default ds
