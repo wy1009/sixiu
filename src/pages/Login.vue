@@ -52,6 +52,8 @@ export default {
       }).then((res) => {
         if (res.success && res.data.userToken) {
           this.$router.replace({ name: 'home' })
+        } else {
+          alert('用户名或密码错误')
         }
       })
     }
