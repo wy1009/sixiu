@@ -75,6 +75,16 @@ const ds = {
       data: params,
     })
   },
+  submitAvatar(params) {
+    return axios({
+      method: 'post',
+      url: `app/mine/photo`,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      data: params,
+    }) 
+  },
   delFile(params) {
     return axios({
       method: 'post',

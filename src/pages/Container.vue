@@ -92,6 +92,7 @@
       <article class="main">
         <header>
           欢迎登录 {{ $store.state.userInfo.username }}
+          <router-link :to="{ name: 'uploadAvatar' }">更改头像</router-link>
           <router-link :to="{ name: 'password' }">修改密码</router-link>
           <a @click="logout">注销</a>
         </header>

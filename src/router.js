@@ -8,6 +8,7 @@ import Home from './pages/Home.vue'
 import Lesson from './pages/Lesson.vue'
 import Opinion from './pages/Opinion.vue'
 import Roast from './pages/Roast.vue'
+import UploadAvatar from './pages/UploadAvatar.vue'
 // 学生
 import HomeWork from './pages/Homework.vue'
 import GradeStudent from './pages/GradeStudent.vue'
@@ -81,6 +82,10 @@ const routes = [{
     name: 'uploadInfo',
     path: 'upload',
     component: UploadInfo,
+  }, {
+    name: 'uploadAvatar',
+    path: 'avatar',
+    component: UploadAvatar,
   }],
 }]
 
