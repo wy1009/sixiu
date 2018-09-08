@@ -1,5 +1,5 @@
 <template>
-  <section class="section ppt">
+  <section class="section" :class="className">
     <header class="section-header">
       <slot name="title"></slot>
       <template v-if="!disableEdit">
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  props: ['status', 'disableEdit'], // display - 展示；add - 添加
+  props: ['status', 'disableEdit', 'className'], // display - 展示；add - 添加
   methods: {
     toggleStatus(status) {
       this.$emit('toggle-status', status)

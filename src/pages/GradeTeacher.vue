@@ -1,6 +1,6 @@
 <template>
   <article class="page-grade-teacher">
-    <section class="section">
+    <section class="section grade">
       <header class="section-header">成绩统计</header>
       <dl class="grade-list">
         <grade-item-teacher

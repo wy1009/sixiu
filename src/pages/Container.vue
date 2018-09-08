@@ -161,6 +161,10 @@ export default {
       & h1 {
         width: 100px;
         margin: 40px auto 20px;
+
+        & img {
+          width: 100%;
+        }
       }
 
       & ul.nav {

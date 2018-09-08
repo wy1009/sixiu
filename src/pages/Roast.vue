@@ -1,6 +1,6 @@
 <template>
   <article class="page-roast">
-    <toggle-section @toggle-status="toggleStatus($event)" :status="status">
+    <toggle-section @toggle-status="toggleStatus($event)" :status="status" className="news">
       <!-- title -->
       <template slot="title">微吐槽</template>
       <!-- display -->
@@ -46,11 +46,15 @@
           <a class="anonymous"
             v-if="formData.anonymous"
             @click="formData.anonymous = 0"
-          >点击解除匿名</a>
+          >
+            <img src="../assets/images/icon-anonymous-active.png" alt="点击解除匿名">匿名
+          </a>
           <a class="anonymous"
             v-else
             @click="formData.anonymous = 1"
-          >点击匿名</a>
+          >
+            <img src="../assets/images/icon-anonymous.png" alt="点击匿名">非匿名
+          </a>
         </div>
         <div class="form-item">
           <button class="form-submit">发表</button>
@@ -149,8 +153,9 @@ export default {
       float: left;
 
       & .avatar {
-        width: 80px;
-        height: 80px;
+        width: 40px;
+        height: 40px;
+        margin: auto;
         overflow: hidden;
 
         & img {
@@ -180,8 +185,8 @@ export default {
 
       & .content-img {
         display: block;
-        max-width: 90%;
-        margin-top: 10px;
+        max-width: 25%;
+        margin-top: 20px;
       }
 
       & footer.content-info {
@@ -234,7 +239,12 @@ form {
   }
 
   & .anonymous {
-    // padding-left: 10px;
+    color: #acacac;
+    & img {
+      height: 20px;
+      float: left;
+      margin-right: 6px;
+    }
   }
 }
 </style>

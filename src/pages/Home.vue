@@ -1,6 +1,6 @@
 <template>
   <article class="page-home">
-    <section class="section ppt" v-for="section in homeList" :key="section.title">
+    <section class="section" :class="section.type && section.type.toLowerCase()" v-for="section in homeList" :key="section.title">
       <header class="section-header">{{ section.title }}</header>
       <ul class="home-list" slot="display">
         <template v-if="section.list.length">

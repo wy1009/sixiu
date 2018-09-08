@@ -1,6 +1,6 @@
 <template>
   <article class="page-grade-student">
-    <section class="section">
+    <section class="section grade">
       <header class="section-header">我的成绩</header>
       <ul class="grade-list">
         <li v-for="item in gradeList" :key="item.courseid">

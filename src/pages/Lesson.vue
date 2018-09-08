@@ -45,7 +45,7 @@
       :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
       @refresh-list="getLessonDetail"
     ></file-list>
-    <section class="section ppt">
+    <section class="section homework">
       <header class="section-header">
         已上传作业
       </header>

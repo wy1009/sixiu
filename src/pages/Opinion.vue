@@ -1,6 +1,6 @@
 <template>
   <article class="page-news">
-    <section class="section">
+    <section class="section news">
       <header class="section-header">
         微{{ $route.name === 'opinion' ? '观点' : '吐槽' }}
         <a class="border-btn" v-if="status === 'list'" @click="toggleStatus('add')">添加</a>
@@ -133,10 +133,6 @@ export default {
 
 <style lang="postcss" scoped>
 @import "../assets/css/section.css";
-
-.section-header {
-  background-image: url(../assets/images/icon-news.png);
-}
 
 .part-display {
    margin: 0 40px;
@@ -287,6 +283,7 @@ export default {
     & img {
       display: block;
       margin-top: 20px;
+      max-width: 25%;
     }
   }
 }

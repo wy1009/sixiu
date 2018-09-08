@@ -1,6 +1,6 @@
 <template>
   <article class="page-upload-info">
-    <section class="section">
+    <section class="section import">
       <header class="section-header">导入信息</header>
       <form class="form" @submit="submit">
         <div class="form-item">

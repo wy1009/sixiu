@@ -37,21 +37,47 @@
     color: var(--red);
   }
 
-  &.ppt {
+  &.courseware {
     & .section-header {
       background-image: url(../images/icon-ppt.png);
     }
   }
 
-  &.audio {
+  &.song {
     & .section-header {
-      background-image: url(../images/icon-audio.png);
+      background-image: url(../images/icon-song.png);
     }
   }
 
-  &.video {
+  &.video,
+  &.practice {
     & .section-header {
       background-image: url(../images/icon-video.png);
+    }
+  }
+
+  &.homework_example,
+  &.homework {
+    & .section-header {
+      background-image: url(../images/icon-homework.png);
+    }
+  }
+
+  &.grade {
+    & .section-header {
+      background-image: url(../images/icon-grade.png);
+    }
+  }
+
+  &.import {
+    & .section-header {
+      background-image: url(../images/icon-import.png);
+    }
+  }
+
+  &.news {
+    & .section-header {
+      background-image: url(../images/icon-news.png);
     }
   }
 

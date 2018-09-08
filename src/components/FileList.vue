@@ -1,5 +1,5 @@
 <template>
-  <toggle-section @toggle-status="toggleStatus($event)" :status="status" :disableEdit="disableEdit">
+  <toggle-section @toggle-status="toggleStatus($event)" :status="status" :disableEdit="disableEdit" :className="type">
     <!-- 标题 -->
     <template slot="title">{{ title }}</template>
     <!-- 展示部分 -->

@@ -6,7 +6,9 @@
       </header>
       <form class="lesson-add" @submit="submit">
         <div class="form-item course">
-          <input type="text" placeholder="输入关键字搜索课程" v-model="courseKeyword">
+          <div class="input-wrap">
+            <input type="text" placeholder="输入关键字搜索课程" v-model="courseKeyword">
+          </div>
           <ul class="search-result-list">
             <li v-for="item in filteredCourseList" :key="item.courseid">
               <span
@@ -26,7 +28,10 @@
         </div>
         <div class="form-item class">
           <label>选择班级</label>
-          <input type="text" v-model="classKeyword">
+          <div class="input-wrap">
+            <input type="text" v-model="classKeyword">
+            <span class="search-res">{{ selectedClassList.join(',') }}</span>
+          </div>
           <ul class="search-result-list">
             <li v-for="item in filteredClassList" :key="item.classid">
               <span
@@ -38,9 +43,7 @@
             </li>
           </ul>
         </div>
-        <div class="form-item">
-          <button class="form-submit">保存课程</button>
-        </div>
+        <button class="submit-btn">保存课程</button>
       </form>
     </section>
   </article>
@@ -103,7 +106,9 @@ export default {
         courseclassname: form.courseclassname.value,
       }).then(({ data }) => {
         if (data.success) {
-          // window.location.reload()
+          window.location.reload()
+        } else {
+          alert(JSON.stringify(data))
         }
       })
     }
@@ -114,20 +119,25 @@ export default {
 <style lang="postcss" scoped>
 @import '../assets/css/section.css';
 
+section.section {
+  position: relative;
+  height: 450px;
+}
+
 form.lesson-add {
   padding: 20px 70px;
   padding-top: 0;
   color: #282828;
 
   & .form-item {
-    width: 380px;
 
     & input {
-      width: 100%;
+      width: 380px;
       height: 36px;
       border-bottom: 1px solid #acacac;
       font-size: 14px;
       padding-left: 6px;
+      box-sizing: border-box;
     }
 
     &.course {
@@ -146,7 +156,14 @@ form.lesson-add {
         background-repeat: no-repeat;
         background-position: 4px center;
         padding-left: 22px;
+        width: 180px;
       }
+    }
+
+    & .search-res {
+      margin-left: 10px;
+      font-size: 12px;
+      color: #acacac;
     }
 
     & .search-result-list {
@@ -155,6 +172,9 @@ form.lesson-add {
       background: #fff;
       left: 0;
       top: 37;
+      max-height: 240px;
+      overflow: auto;
+      padding: 0 10px;
 
       & .checkbox {
         display: inline-block;
@@ -168,6 +188,17 @@ form.lesson-add {
         }
       }
     }
+  }
+
+  & .submit-btn {
+    position: absolute;
+    color: #fff;
+    background: var(--red);
+    border-radius: 4px;
+    padding: 2px 6px;
+    cursor: pointer;
+    top: 20px;
+    right: 40px;
   }
 }
 </style>
