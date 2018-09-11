@@ -49,10 +49,15 @@
     }
   }
 
-  &.video,
-  &.practice {
+  &.video {
     & .section-header {
       background-image: url(../images/icon-video.png);
+    }
+  }
+
+  &.practice {
+    & .section-header {
+      background-image: url(../images/icon-practice.png);
     }
   }
 

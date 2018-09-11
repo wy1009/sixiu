@@ -45,7 +45,7 @@ export default {
         if (data.success) {
           alert('导入成功！')
         } else {
-          alert(JSON.stringify(data))
+          alert(data.errorMsg)
         }
       })
     },
@@ -73,6 +73,12 @@ export default {
       border-radius: 10px;
       color: var(--red);
       margin-right: 30px;
+    }
+
+    & select {
+      width: 200px;
+      height: 30px;
+      font-size: 14px;
     }
   }
 

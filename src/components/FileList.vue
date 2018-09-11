@@ -61,8 +61,11 @@ export default {
 
       ds.submitFile(this.$store.state.userInfo.usertype, formData).then(({ data }) => {
         if (data.success) {
+          alert('上传成功！')
           this.$emit('refresh-list')
           this.toggleStatus('display')
+        } else {
+          alert(data.errorMsg)
         }
       })
     }

@@ -78,7 +78,7 @@ export default {
           this.getCourseList()
           alert('上传成功！')
         } else {
-          alert(JSON.stringify(data))
+          alert(data.errorMsg)
         }
       })
     },
@@ -86,7 +86,7 @@ export default {
       const res = confirm('确定删除作业吗？')
 
       if (res) {
-        ds.delFile({ id: [id] }).then(({ data }) => {
+        ds.delFile({ id: [id] }).then(() => {
           this.getCourseList()
         })
       }

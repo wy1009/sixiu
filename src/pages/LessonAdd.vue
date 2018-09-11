@@ -7,18 +7,10 @@
       <form class="lesson-add" @submit="submit">
         <div class="form-item course">
           <div class="input-wrap">
-            <input type="text" placeholder="输入关键字搜索课程" v-model="courseKeyword">
+            <select name="courseId">
+              <option v-for="item in courseList" :key="item.courseid" :value="item.courseid">{{ item.coursename }}</option>
+            </select>
           </div>
-          <ul class="search-result-list">
-            <li v-for="item in filteredCourseList" :key="item.courseid">
-              <span
-                class="checkbox"
-                :class="selectedCourse === item.courseid && 'checked'"
-                @click="selectedCourse = item.courseid"
-              ></span>
-              {{ item.coursename }}
-            </li>
-          </ul>
         </div>
         <div class="form-item">
           <input type="text" placeholder="编辑课程班级id" name="courseclassid">
@@ -29,21 +21,20 @@
         <div class="form-item class">
           <label>选择班级</label>
           <div class="input-wrap">
-            <input type="text" v-model="classKeyword">
+            <input type="text" v-model="classKeyword" @focus="showResultList" @click="$event.stopPropagation()">
             <span class="search-res">{{ selectedClassList.join(',') }}</span>
           </div>
-          <ul class="search-result-list">
-            <li v-for="item in filteredClassList" :key="item.classid">
+          <ul class="search-result-list" v-show="resultListShow">
+            <li v-for="item in filteredClassList" :key="item.classid" @click="toggleSelectedClass($event, item.classid)">
               <span
                 class="checkbox"
                 :class="selectedClassList.indexOf(item.classid) !== -1 && 'checked'"
-                @click="toggleSelectedClass(item.classid)"
               ></span>
               {{ item.classid }}
             </li>
           </ul>
         </div>
-        <button class="submit-btn">保存课程</button>
+        <button class="border-btn">保存课程</button>
       </form>
     </section>
   </article>
@@ -67,17 +58,21 @@ export default {
       selectedCourse: '',
       courseClassName: '', // 课程班级名称
       courseClassId: '', // 自定义的课程班级id
+      resultListShow: false,
     }
   },
   computed: {
     filteredClassList() {
-      return this.classList.filter(item => this.classKeyword && item.classid.indexOf(this.classKeyword) !== -1)
+      return this.classKeyword ?
+        this.classList.filter(item => this.classKeyword && item.classid.indexOf(this.classKeyword) !== -1)
+        : this.classList
     },
     filteredCourseList() {
-      return this.courseList.filter(item => this.courseKeyword && item.coursename.indexOf(this.courseKeyword) !== -1)
+      return this.courseList.filter(item => this.courseKeyword && item.coursename.indexOf(this.courseKeyword) !== -1) 
     },
   },
   mounted() {
+    document.addEventListener('click', this.hideResultList)
     ds.searchCourseList().then(({ data }) => {
       if (data.success) {
         this.classList = data.data.classes
@@ -85,8 +80,12 @@ export default {
       }
     })
   },
+  beforeDestroy() {
+    document.removeEventListener('click', this.hideResultList)
+  },
   methods: {
-    toggleSelectedClass(id) {
+    toggleSelectedClass(e, id) {
+      e.stopPropagation()
       const index = this.selectedClassList.indexOf(id)
       if (index !== -1) {
         this.selectedClassList.splice(index, 1)
@@ -100,7 +99,7 @@ export default {
       const form = e.target
 
       ds.submitCourseClass({
-        courseId: this.selectedCourse,
+        courseId: form.courseId.value,
         classlist: this.selectedClassList.join(','),
         courseclassId: form.courseclassid.value,
         courseclassname: form.courseclassname.value,
@@ -108,11 +107,17 @@ export default {
         if (data.success) {
           window.location.reload()
         } else {
-          alert(JSON.stringify(data))
+          alert(data.errorMsg)
         }
       })
-    }
-  }
+    },
+    hideResultList() {
+      this.resultListShow = false
+    },
+    showResultList(status) {
+      this.resultListShow = true
+    },
+  },
 }
 </script>
 
@@ -141,7 +146,11 @@ form.lesson-add {
     }
 
     &.course {
-      position: relative;
+      & select {
+        width: 380px;
+        height: 36px;
+        font-size: 14px;
+      }
     }
 
     &.class {
@@ -175,6 +184,7 @@ form.lesson-add {
       max-height: 240px;
       overflow: auto;
       padding: 0 10px;
+      cursor: pointer;
 
       & .checkbox {
         display: inline-block;
@@ -190,15 +200,12 @@ form.lesson-add {
     }
   }
 
-  & .submit-btn {
+  & .border-btn {
     position: absolute;
-    color: #fff;
-    background: var(--red);
-    border-radius: 4px;
-    padding: 2px 6px;
-    cursor: pointer;
     top: 20px;
     right: 40px;
+    background: transparent;
+    cursor: pointer;
   }
 }
 </style>

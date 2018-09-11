@@ -95,6 +95,8 @@ export default {
         ds.delNews('roast', { roastId: id }).then(({ data }) => {
           if (data.success) {
             this.getList()
+          } else {
+            alert(data.errorMsg)
           }
         })
       }
@@ -171,12 +173,13 @@ export default {
 
       & .anonymous {
         width: 30px;
-        line-height: 18px;
+        line-height: 14px;
         text-align: center;
         border: 1px solid var(--red);
         color: var(--red);
         border-radius: 4px;
         margin: 4px auto;
+        font-size: 12px;
       }
     }
 

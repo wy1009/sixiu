@@ -23,6 +23,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { encodePassword } from '../assets/js/util'
 
 export default {
   data() {
@@ -33,27 +34,16 @@ export default {
   },
   methods: {
     ...mapActions(['login']),
-    encodePassword(pwd) {
-      let sb = ''
-      Array.prototype.forEach.call(pwd, (item, i) => {
-        if (i % 2 == 0) {
-          sb += String.fromCharCode(item.charCodeAt() - 1)
-        } else {
-          sb += String.fromCharCode(item.charCodeAt() + 1)
-        }
-      })
-      return sb
-    },
     submit(e) {
       e.preventDefault()
       this.login({
         userId: this.userId,
-        userPwd: this.encodePassword(this.userPwd),
+        userPwd: encodePassword(this.userPwd),
       }).then((res) => {
         if (res.success && res.data.userToken) {
           this.$router.replace({ name: 'home' })
         } else {
-          alert('用户名或密码错误')
+          alert(res.errorMsg)
         }
       })
     }

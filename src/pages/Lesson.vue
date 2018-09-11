@@ -30,7 +30,7 @@
     <file-list
       :list="lessonDetail.practiceList"
       type="practice"
-      title="实践视频"
+      title="实践教学"
       :status="status.practice"
       @toggle-status="toggleStatus($event)"
       :disableEdit="$store.state.userInfo.usertype !== 'teacher'"

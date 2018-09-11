@@ -5,7 +5,7 @@
       <form @submit="submit">
         <div class="form-item">
           <label>原始密码</label>
-          <input class="form-input" type="password" name="oldPwd">
+          <input class="form-input" type="text" name="oldPwd">
         </div>
         <div class="form-item">
           <label>新密码</label>
@@ -23,6 +23,7 @@
 
 <script>
 import ds from '../assets/js/server'
+import { encodePassword } from '../assets/js/util'
 
 export default {
   methods: {
@@ -30,9 +31,9 @@ export default {
       e.preventDefault()
       const form = e.target
 
-      const userPwd = form.userPwd.value
-      const oldPwd = form.oldPwd.value
-      const repeatPwd = form.repeatPwd.value
+      const userPwd = encodePassword(form.userPwd.value)
+      const oldPwd = encodePassword(form.oldPwd.value)
+      const repeatPwd = encodePassword(form.repeatPwd.value)
 
       if (repeatPwd !== userPwd) {
         alert('新旧密码不一致')
@@ -41,7 +42,11 @@ export default {
 
       ds.changePassword({ oldPwd, userPwd }).then(({ data }) => {
         if (data.success) {
-          window.location.reload()
+          ds.logout().then(() => {
+            window.location.reload()  
+          })
+        } else {
+          alert(data.errorMsg)
         }
       })
     },

@@ -2,8 +2,8 @@
   <article class="page-news">
     <section class="section news">
       <header class="section-header">
-        微{{ $route.name === 'opinion' ? '观点' : '吐槽' }}
-        <a class="border-btn" v-if="status === 'list'" @click="toggleStatus('add')">添加</a>
+        微观点
+        <a class="border-btn" v-if="status === 'list' && $store.state.userInfo.usertype === 'teacher'" @click="toggleStatus('add')">添加</a>
         <a class="border-btn" v-if="status === 'add'" @click="toggleStatus('list')">取消</a>
         <a class="border-btn" v-if="status === 'detail'" @click="toggleStatus('list')">返回</a>
       </header>
@@ -99,6 +99,8 @@ export default {
         ds.delNews(this.$route.name, { opinionId: id }).then(({ data }) => {
           if (data.success) {
             this.getList()
+          } else {
+            alert(data.errorMsg)
           }
         })
       }
@@ -279,6 +281,7 @@ export default {
   & .content {
     margin-top: 20px;
     line-height: 30px;
+    white-space: pre-wrap;
 
     & img {
       display: block;
