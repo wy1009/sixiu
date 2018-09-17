@@ -58,6 +58,9 @@
         <li v-else>暂无</li>
       </ul>
     </section>
+    <section>
+      <div class="form-submit" @click="del">删除课程班级</div>
+    </section>
   </article>
 </template>
 
@@ -105,6 +108,17 @@ export default {
     },
     downloadFile(url, name) {
       download(url, name)
+    },
+    del() {
+      const res = confirm('确定要删除该课程班级吗？')
+
+      if (res) {
+        ds.delCourseClass({
+          courseclassId: this.id,
+        }).then(() => {
+          window.location.href = window.location.origin
+        })
+      }
     },
   },
   components: {

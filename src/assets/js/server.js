@@ -144,6 +144,13 @@ const ds = {
       data: Object.assign({ userToken: store.state.userToken }, params),
     })
   },
+  delCourseClass(params) {
+    return axios({
+      method: 'post',
+      url: '/app/courseclass/delete',
+      data: Object.assign({ userToken: store.state.userToken }, params),
+    })
+  },
 }
 
 export default ds
