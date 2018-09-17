@@ -5,7 +5,7 @@
       <ul class="home-list" slot="display">
         <template v-if="section.list.length">
           <li v-for="item in section.list" :key="item.id">
-            <a :href="item.downloadurl">{{ item.name }}</a>
+            <a @click="downloadFile(item.downloadurl, item.name)">{{ item.name }}</a>
             <a class="del-btn" v-if="$store.state.userInfo.usertype === 'teacher'" @click="del(item.id)">删除</a>
           </li>
         </template>
@@ -17,6 +17,7 @@
 
 <script>
 import ds from '../assets/js/server'
+import { download } from '../assets/js/util.js'
 
 export default {
   props: ['id'],
@@ -45,6 +46,9 @@ export default {
           }
         })
       }
+    },
+    downloadFile(url, name) {
+      download(url, name)
     },
   },
 }

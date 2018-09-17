@@ -6,7 +6,7 @@
     <ul class="home-list" slot="display">
       <template v-if="list && list.length">
         <li v-for="item in list" :key="item.id">
-          <a :href="item.downloadurl">{{ item.name }}</a>
+          <a @click="downloadFile(item.downloadurl, item.name)">{{ item.name }}</a>
           <a class="del-btn" v-if="!disableEdit" @click="del(item.id)">删除</a>
         </li>
       </template>
@@ -23,6 +23,7 @@
 <script>
 import ds from '../assets/js/server.js'
 import ToggleSection from './ToggleSection.vue'
+import { download } from '../assets/js/util.js'
 
 export default {
   props: ['list', 'status', 'type', 'title', 'disableEdit'],
@@ -68,7 +69,10 @@ export default {
           alert(data.errorMsg)
         }
       })
-    }
+    },
+    downloadFile(url, name) {
+      download(url, name)
+    },
   },
   components: {
     ToggleSection,

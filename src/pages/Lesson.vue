@@ -52,7 +52,7 @@
       <ul class="home-list">
         <template v-if="lessonDetail.uploadlist && lessonDetail.uploadlist.length">
           <li v-for="item in lessonDetail.uploadlist" :key="item.id">
-            <a :href="item.downloadurl">{{ item.name }}</a>
+            <a @click="downloadFile(item.downloadurl, item.name)">{{ item.name }}</a>
           </li>
         </template>
         <li v-else>暂无</li>
@@ -65,6 +65,7 @@
 import ds from '../assets/js/server.js'
 import ToggleSection from '../components/ToggleSection.vue'
 import FileList from '../components/FileList.vue'
+import { download } from '../assets/js/util.js'
 
 export default {
   props: ['id'],
@@ -101,6 +102,9 @@ export default {
     },
     toggleStatus(option) {
       this.status[option.type] = option.status
+    },
+    downloadFile(url, name) {
+      download(url, name)
     },
   },
   components: {
