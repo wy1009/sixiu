@@ -38,7 +38,7 @@
           </li>
         </ul>
         <!-- 老师 -->
-        <ul class="nav" v-if="$store.state.userInfo.usertype === 'teacher'">
+        <ul class="nav" v-if="['teacher', 'root'].indexOf($store.state.userInfo.usertype) !== -1">
           <li class="nav-item" :class="['home', 'lesson', 'lessonAdd'].indexOf($route.name) !== -1 && 'active'">
             <router-link class="nav-link" :to="{ name: 'home' }">课程管理</router-link>
             <ul class="second-nav">

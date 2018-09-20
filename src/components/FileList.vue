@@ -51,7 +51,7 @@ export default {
 
       let formData = new FormData()
       formData.append('userToken', this.$store.state.userToken)
-      if (this.$store.state.userInfo.usertype === 'teacher') {
+      if (['teacher', 'root'].indexOf(this.$store.state.userInfo.usertype) !== -1) {
         formData.append('courseClassId', this.$route.params.id)
       } else {
         formData.append('courseId', this.$route.params.id)

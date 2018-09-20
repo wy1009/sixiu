@@ -6,7 +6,7 @@
       title="课程PPT"
       :status="status.courseware"
       @toggle-status="toggleStatus($event)"
-      :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
+      :disableEdit="disableEdit"
       @refresh-list="getLessonDetail"
     ></file-list>
     <file-list
@@ -15,7 +15,7 @@
       title="歌曲精选"
       :status="status.song"
       @toggle-status="toggleStatus($event)"
-      :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
+      :disableEdit="disableEdit"
       @refresh-list="getLessonDetail"
     ></file-list>
     <file-list
@@ -24,7 +24,7 @@
       title="精选视频"
       :status="status.video"
       @toggle-status="toggleStatus($event)"
-      :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
+      :disableEdit="disableEdit"
       @refresh-list="getLessonDetail"
     ></file-list>
     <file-list
@@ -33,7 +33,7 @@
       title="实践教学"
       :status="status.practice"
       @toggle-status="toggleStatus($event)"
-      :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
+      :disableEdit="disableEdit"
       @refresh-list="getLessonDetail"
     ></file-list>
     <file-list
@@ -42,7 +42,7 @@
       title="优秀作业"
       :status="status.homework_example"
       @toggle-status="toggleStatus($event)"
-      :disableEdit="$store.state.userInfo.usertype !== 'teacher'"
+      :disableEdit="disableEdit"
       @refresh-list="getLessonDetail"
     ></file-list>
     <section class="section homework">
@@ -83,6 +83,7 @@ export default {
         practice: 'display',
         homework_example: 'display',
       },
+      disableEdit: ['teacher', 'root'].indexOf(this.$store.state.userInfo.usertype) === -1,
     }
   },
   watch: {

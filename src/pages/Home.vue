@@ -6,7 +6,7 @@
         <template v-if="section.list.length">
           <li v-for="item in section.list" :key="item.id">
             <a @click="downloadFile(item.downloadurl, item.name)">{{ item.name }}</a>
-            <a class="del-btn" v-if="$store.state.userInfo.usertype === 'teacher'" @click="del(item.id)">删除</a>
+            <a class="del-btn" v-if="['teacher', 'root'].indexOf($store.state.userInfo.usertype) !== -1" @click="del(item.id)">删除</a>
           </li>
         </template>
         <li v-else>暂无</li>

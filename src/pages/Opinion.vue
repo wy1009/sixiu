@@ -3,7 +3,7 @@
     <section class="section news">
       <header class="section-header">
         微观点
-        <a class="border-btn" v-if="status === 'list' && $store.state.userInfo.usertype === 'teacher'" @click="toggleStatus('add')">添加</a>
+        <a class="border-btn" v-if="status === 'list' && ['teacher', 'root'].indexOf($store.state.userInfo.usertype) !== -1" @click="toggleStatus('add')">添加</a>
         <a class="border-btn" v-if="status === 'add'" @click="toggleStatus('list')">取消</a>
         <a class="border-btn" v-if="status === 'detail'" @click="toggleStatus('list')">返回</a>
       </header>
@@ -11,7 +11,7 @@
       <article class="part-display" v-if="status === 'list'">
         <ul>
           <li class="news" v-for="item in list" :key="item[`${$route.name}Id`]">
-            <a class="del" @click="del(item.opinionId || item.roastId)">-</a>
+            <a class="del" v-if="['teacher', 'root'].indexOf($store.state.userInfo.usertype) !== -1" @click="del(item.opinionId || item.roastId)">-</a>
             <div class="time">
               <span class="month">{{ new Date(parseInt(item.uploadDate, 10)).getMonth() + 1 }}月</span>
               <span class="date">{{ new Date(parseInt(item.uploadDate, 10)).getDate() }}</span>

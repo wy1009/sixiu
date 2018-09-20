@@ -176,12 +176,13 @@ form.lesson-add {
     }
 
     & .search-result-list {
+      border: 1px solid #EDEDED;
       line-height: 24px;
       position: absolute;
       background: #fff;
       left: 0;
       top: 37;
-      max-height: 240px;
+      max-height: 120px;
       overflow: auto;
       padding: 0 10px;
       cursor: pointer;
