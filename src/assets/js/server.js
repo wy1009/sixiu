@@ -65,6 +65,10 @@ const ds = {
     })
   },
   submitFile(type, params) {
+    // 不知道日后还会怎么扩展，先这么写吧
+    if (type === 'root') {
+      type = 'teacher'
+    }
     return axios({
       method: 'post',
       url: `file/upload/${type}`,
