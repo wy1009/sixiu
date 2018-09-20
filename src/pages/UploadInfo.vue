@@ -8,11 +8,15 @@
         </div>
         <div class="form-item">
           <select name="type">
-            <option v-for="item in typeList" :key="item">{{ item }}</option>
+            <option v-for="item in typeList" :key="item.key" :value="item.key">{{ item.value }}</option>
           </select>
         </div>
         <div class="form-item">
-          <button class="form-submit">导入</button>
+          <input type="radio" name="operate" value="insert">导入
+          <input type="radio" name="operate" value="delete">删除
+        </div>
+        <div class="form-item">
+          <button class="form-submit">确定</button>
         </div>
       </form>
     </section>
@@ -25,7 +29,14 @@ import ds from '../assets/js/server'
 export default {
   data() {
     return {
-      typeList: ['class', 'course', 'courseclass', 'courseclassrelation', 'grade', 'user'],
+      typeList: [
+        { key: 'class', value: '班级' },
+        { key: 'course', value: '课程' },
+        { key: 'courseclass', value: '课程班级' },
+        { key: 'courseclassrelation', value: '课程班级关系' },
+        { key: 'grade', value: '成绩' },
+        { key: 'user', value: '用户' },
+      ],
     }
   },
   methods: {
@@ -38,12 +49,13 @@ export default {
 
       formData.append('userToken', this.$store.state.userToken)
       formData.append('type', form.type.value)
+      formData.append('operate', form.operate.value)
       formData.append('file', form.file.files[0])
       formData.append('name', form.file.files[0].name)
 
       ds.submitFile('data', formData).then(({ data }) => {
         if (data.success) {
-          alert('导入成功！')
+          alert(form.operate.value === 'insert' ? '导入成功！' : '删除成功！')
         } else {
           alert(data.errorMsg)
         }
@@ -79,6 +91,10 @@ export default {
       width: 200px;
       height: 30px;
       font-size: 14px;
+    }
+
+    & input[type=radio] {
+      margin: 0 10px 0 16px;
     }
   }
 
