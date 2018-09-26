@@ -7,7 +7,7 @@
           <header>已上传</header>
           <ul>
             <li v-for="(item, index) in homeworkList" :key="item.id">
-              <a @click="downloadFile(item.downloadurl, item.name)"><span>{{ index + 1 }}. {{ item.name }}</span></a>
+              <a :href="item.downloadurl"><span>{{ index + 1 }}. {{ item.name }}</span></a>
               <a class="del-btn" @click="delHomework(item.id)">删除</a>
             </li>
           </ul>
@@ -37,7 +37,6 @@
 
 <script>
 import ds from '../assets/js/server'
-import { download } from '../assets/js/util.js'
 
 export default {
   data() {
@@ -91,9 +90,6 @@ export default {
           this.getCourseList()
         })
       }
-    },
-    downloadFile(url, name) {
-      download(url, name)
     },
   }
 }
