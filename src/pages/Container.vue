@@ -88,6 +88,10 @@
             <router-link class="nav-link" :to="{ name: 'uploadInfo' }">信息导入</router-link>
           </li>
         </ul>
+        <div class="qrcode">
+          <img :src="qrcode" alt="扫码下载 app">
+          <span>扫码下载 App</span>
+        </div>
       </aside>
       <article class="main">
         <header>
@@ -115,11 +119,13 @@ export default {
     return {
       courseList: [],
       gradeCourseList: [],
+      qrcode: '',
     }
   },
   mounted() {
     this.getCourseList()
     this.getGradeList()
+    this.getQrCode()
   },
   methods: {
     getCourseList() {
@@ -136,6 +142,11 @@ export default {
         if (data.success) {
           this.gradeCourseList = data.data.list
         }
+      })
+    },
+    getQrCode() {
+      ds.qrcode().then(({ data }) => {
+        this.qrcode = data.data.url
       })
     },
     logout() {
@@ -157,6 +168,7 @@ export default {
     & aside {
       flex: 0 0 200px;
       box-shadow: 4px 0px 4px rgba(0, 0, 0, .1);
+      position: relative;
 
       & h1 {
         width: 100px;
@@ -205,6 +217,23 @@ export default {
               }
             }
           }
+        }
+      }
+
+      & .qrcode {
+        text-align: center;
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        right: 0;
+        font-size: 12px;
+
+        & img {
+          width: 100px;
+          height: 100px;
+          display: block;
+          margin: auto;
+          margin-bottom: 10px;
         }
       }
     }

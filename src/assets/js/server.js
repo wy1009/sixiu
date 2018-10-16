@@ -1,7 +1,8 @@
 import axios from 'axios'
 import store from '../../store'
 
-axios.defaults.baseURL = 'https://szk.bupt.edu.cn/'
+// axios.defaults.baseURL = 'https://szk.bupt.edu.cn/'
+axios.defaults.baseURL = 'http://10.3.240.18:10000/'
 
 const ds = {
   getUserInfo() {
@@ -153,6 +154,13 @@ const ds = {
       method: 'post',
       url: '/app/courseclass/delete',
       data: Object.assign({ userToken: store.state.userToken }, params),
+    })
+  },
+  qrcode() {
+    return axios({
+      method: 'get',
+      url: '/app/qrcode',
+      data: Object.assign({ userToken: store.state.userToken }),
     })
   },
 }
